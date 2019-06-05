@@ -1,6 +1,6 @@
 # Node.js SODA APIs on Oracle Autonomous Database
 
-This workshop will introduce you to the Simple Oracle Document Access (SODA) APIs on Node.js. The front-end will be a todo tracking app from [TodoMVC](http://todomvc.com/). The mid-tier will be a Node.js based REST API that uses the SODA APIs included with node-oracledb (the database driver for Oracle Database) to persist data. For that persistance, the workshop will use Oracle's Autonomous Transaction Processing (ATP) cloud service.
+This workshop will introduce you to the Node.js Simple Oracle Document Access (SODA) APIs and Oracle Autonomous Database. The front-end app will be a todo tracker from [TodoMVC](http://todomvc.com/). The mid-tier will be a Node.js based REST API that uses the SODA APIs included with node-oracledb (the database driver for Oracle Database) to persist data. For the database, the workshop will use Oracle's Autonomous Transaction Processing (ATP) cloud service.
 
 ## Goals for this workshop
 
@@ -21,7 +21,7 @@ Simple Oracle Document Access (SODA) is a set of NoSQL-style APIs that let you c
 
 **What is Autonomous Transaction Processing?**
 
-Oracle Autonomous Transaction Processing delivers a self-driving, self-securing, self-repairing database service that can instantly scale to meet demands of mission critical transaction processing and mixed workload applications.  
+Oracle Autonomous Transaction Processing delivers a self-driving, self-securing, self-repairing database service that can instantly scale to meet demands of mission critical transaction processing and mixed workload applications. 
 
 ## Labs
 

@@ -6,9 +6,9 @@ When you create an Autonomous Transaction Processing (ATP) instance, you are pro
 
 ## Objectives
 
-- Learn how to sign-in to the Oracle Public Cloud
-- Learn how to connect to an ATP instance from SQL Developer
-- Learn how to create a database user with SODA privileges
+- Sign-in to the Oracle Public Cloud
+- Connect to an ATP instance from SQL Developer
+- Create a database user with SODA privileges
 
 ## Required Artifacts
 
@@ -22,21 +22,25 @@ When you create an Autonomous Transaction Processing (ATP) instance, you are pro
 
 ### Step 1: Sign in to Oracle Cloud Infrastructure console
 
-- Go to cloud.oracle.com, click Sign In to sign in with your Oracle Cloud account.
+In this step, you will sign into your Oracle cloud account so that you can work with various services using a GUI.
+
+- Go to cloud.oracle.com, click **Sign In** to sign in with your Oracle Cloud account.
 
   ![sign in](images/1/signin.png)
 
-- Enter your Cloud Account Name and click **Next**.
+- Enter your **Cloud Account Name** and click **Next**.
 
   ![account name](images/1/account-name.png)
 
-- Enter your Oracle Cloud user name and password, then click **Sign In**.
+- Enter your **User Name** and **Password**, then click **Sign In**.
 
   ![user name and password](images/1/user-name-and-password.png)
 
   Once you've successfully authenticated, you'll be redirected to the Oracle Cloud Infrastructure dashboard where you can start working with various cloud services.
 
 ### Step 2: Download ATP client credentials (wallet)
+
+With Oracle Autonomous Database, data is encrypted both at rest and while communicating with the database. For network encryption to work, clients need to have the correct encryption keys and related connection details. In this step, you'll learn how to access these credentials so that various clients can connect to the database.
 
 - Open the services menu by clicking the "hamburger" icon in the upper left-hand corner, then select **Autonomous Transaction Processing**.
 
