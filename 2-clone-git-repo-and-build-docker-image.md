@@ -68,7 +68,7 @@ With the Docker image built, you're now ready to run a container based on the im
     -p 3000:3000 \
     soda-app-image:latest
   ```
-- Copy the modified command from the text editor and run it in a terminal. This will create and run a Docker container named **soda-app-container** based on the **soda-app-image** image created previously. The last lines in the output from the command should look like the following:
+- Copy the modified command from your text editor and run it in a terminal. This will create and run a Docker container named **soda-app-container** based on the **soda-app-image** image created previously. The last lines in the output from the command should look like the following:
   ```shell
   Starting application
   Initializing database module
@@ -78,3 +78,7 @@ With the Docker image built, you're now ready to run a container based on the im
 - Test the image by opening a browser and navigating to **localhost:3000**. If you see the following app, then you're ready to proceed to the next lab.
 
   ![todo app](images/2/todo-app.png)
+
+### Summary
+
+At this point, you have the starter application running in a docker container. If you test the app by adding some todos, you'll find that the todos are not saved. This is because the CRUD functionality for the REST API hasn't been added yet. You'll add that logic using the SODA APIs in the next lab.
