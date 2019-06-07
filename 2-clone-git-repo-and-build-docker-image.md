@@ -47,6 +47,7 @@ In this step, you will build a docker image to host the application downloaded i
 With the Docker image built, you're now ready to run a container based on the image. In this step, you'll start a docker container which maps some ports and directories on your host machine to the docker container. 
 
 - Locate the client credentials zip file that was downloaded in Step 2 of the previous lab. Extract the contents of the zip file to a directory that has the same name as the zip file. Note the absolute path the directory on your machine as you'll need that in a subsequent step.
+- Open the **database.js** file in the **config** directory. Replace the `[SERVICE_NAME]` token for the `connectString` property to the connect string that ends with `_tp` in the **tnsnames.ora** file in the client credentials directory. For example, if you database name is "testdb" then the correct `connectString` value will be `testdb_tp`.
 - Copy and paste the following terminal command into your favorite text editor: 
 
   ```shell
