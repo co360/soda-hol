@@ -59,7 +59,7 @@ With the todos collection in place, you can start to build out the CRUD function
 
 ### Step 3: Fetch documents from the collection
 
-Now that todos are being stored in the collection, the next step is to add the ability to fetch them back out so they can be displayed in the todo app. As you saw in the previous step, document keys in SODA a stored as metadata - not as part of the document content. This is something you'll need to consider when building apps as clients often need the keys to work with REST APIs.
+Now that todos are being stored in the collection, the next step is to add the ability to fetch them back out so they can be displayed in the todo app. As you saw in the previous step, document keys in SODA are stored as metadata - not as part of the document content. This is something you'll need to consider when building apps as clients often need the keys to work with REST APIs.
 
 - Return to the **todos.js** file in the **db_apis** directory.
 - Locate the `find` function and replace the comment related to adding SODA code with code that does the following:
@@ -77,7 +77,7 @@ So far, you've implemented the "C" (create) and the "R" (read) of CRUD operation
 - Locate the `update` function and replace the comment related to adding SODA code with code that does the following:
   - Use the appropriate SODA API to update the todo in the collection. Use the method that returns the metadata related to the document.
   - Use the metadata returned from the update to determine if the update was successful. If it was then return true, otherwise (perhaps the key value passed in didn't exist) return false.
-- To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. Either make the todo as complete or double-click on the name of an existing todo and change it. Then refresh the browser. If you see your changes have persisted across refreshes then the update functionality is working. Do your best to write the code on your own, but [use this update example](solutions/update.js) if needed.
+- To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. Either mark the todo as complete or double-click on the name of an existing todo and change it. Then refresh the browser. If you see your changes have persisted across refreshes then the update functionality is working. Do your best to write the code on your own, but [use this update example](solutions/update.js) if needed.
 
 ### Step 5: Remove documents from the collection
 
