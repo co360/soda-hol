@@ -110,6 +110,7 @@ Now that you are able to connect to the database as the ADMIN user, you will use
 
   grant connect to todo_soda;
   grant resource to todo_soda;
+  grant create view to todo_soda;
   grant soda_app to todo_soda;
   ```
 

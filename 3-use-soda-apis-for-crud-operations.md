@@ -1,4 +1,4 @@
-# Lab 3: Update app to use SODA APIs
+# Lab 3: Use SODA APIs for CRUD Operations
 
 ## Introduction
 
@@ -81,7 +81,7 @@ So far, you've implemented the "C" (create) and the "R" (read) of CRUD operation
 
 ### Step 5: Remove documents from the collection
 
-All that's left to complete the CRUD functionality is to add the ability to delete todos. The application allows individual todos to be deleted and for all todos makes as "complete" to be deleted together.
+All that's left to complete the CRUD functionality is to add the ability to delete todos. The application allows individual todos to be deleted and for all todos marked as "complete" to be deleted at the same time.
 
 - Return to the **todos.js** file in the **db_apis** directory.
 - Locate the `del` function and replace the two comments related to adding SODA code with the appropriate SODA API calls:
@@ -91,4 +91,4 @@ All that's left to complete the CRUD functionality is to add the ability to dele
 
 ### Summary
 
-At this point you have a working todo tracking application! You create a collection to store todo documents and then updated the API to support basic CRUD operations, all without writing a single line of SQL!
+At this point you have a working todo tracking application! You create a collection to store todo documents and then updated the API to support basic CRUD operations, all without writing a single line of SQL! Of course, SQL is one of the most powerful and popular programming languages of all time. In the next lab, you'll see how some extensions to the SQL language can help when working with JSON data.

@@ -29,8 +29,8 @@ Oracle Autonomous Transaction Processing delivers a self-driving, self-securing,
 | -   | -         |
 | [Create a DB user with SODA privileges](1-create-db-user-with-soda-privs.md) | 20 min |
 | [Clone Git repo and build Docker image](2-clone-git-repo-and-build-docker-image.md) | 20 min |
-| [Update app to use SODA APIs](3-update-app-to-use-soda-apis.md) | 20 min |
-| [Use SQL and PL/SQL features for JSON](4-use-sql-and-plsql-features-for-json.md) | 20 min |
+| [Use SODA APIs for CRUD operations](3-use-soda-apis-for-crud-operations.md) | 20 min |
+| [Use SQL features for JSON](4-use-sql-features-for-json.md) | 20 min |
 
 ## After You Finish
 
