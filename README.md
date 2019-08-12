@@ -1,10 +1,10 @@
 # Node.js SODA APIs on Oracle Autonomous Database
 
-This workshop will introduce you to the Node.js Simple Oracle Document Access (SODA) APIs and Oracle Autonomous Database. The front-end app will be a todo tracker from [TodoMVC](http://todomvc.com/). The mid-tier will be a Node.js based REST API that uses the SODA APIs included with node-oracledb (the database driver for Oracle Database) to persist data. For the database, the workshop will use Oracle's Autonomous Transaction Processing (ATP) cloud service.
+This workshop will introduce you to the Simple Oracle Document Access (SODA) APIs for Node.js and Oracle Autonomous Database. The front-end app will be a todo tracker from [TodoMVC](http://todomvc.com/). The mid-tier will be a Node.js based REST API that uses the SODA APIs included with node-oracledb (the database driver for Oracle Database) to persist data. For the database, the workshop will use Oracle's Autonomous Transaction Processing (ATP) cloud service.
 
 ## Goals for this workshop
 
-- Securely connect to ATP from SQL Developer and Node.js
+- Securely connect to ATP from SQL Developer Web and Node.js
 - Use SODA APIs in Node.js to fetch and persist data in ATP
 - Use JSON functions in SQL to work with JSON data
 

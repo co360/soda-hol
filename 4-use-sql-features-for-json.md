@@ -74,7 +74,7 @@ See [this documentation](https://docs.oracle.com/en/database/oracle/oracle-datab
 
     ![json_table query results](images/4/json-table-query-results.png)
 
-    Do your best to write the code on your own, but [use this JSON_TABLE example](solutions/json_table.sql) if needed.
+    Do your best to write the code on your own, but [use this JSON_TABLE example](solutions/json-table.sql) if needed.
   - Prepend the following code to the JSON_TABLE query and execute the statement. This will create a relational view over the JSON data.
     ```sql
     create or replace view todos_v as

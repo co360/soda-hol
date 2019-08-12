@@ -6,6 +6,7 @@ In this lab, you will clone the public GitHub repo that will serve as the starti
 
 ## Objectives
 
+- Download client credentials for secure connections
 - Clone the todo application's Git repo
 - Build a docker image to host the application
 - Run a docker container based on the image
@@ -13,24 +14,50 @@ In this lab, you will clone the public GitHub repo that will serve as the starti
 ## Required Artifacts
 
 - Git - The todo application is hosted in GitHub so Git is used to clone the repo. If Git isn't available, you may opt to download the repo from GitHub as a zip file and extract the contents where you wish.
-- Docker - Docker is a standard tool for packaging and deploying applications, especially when Continuous Integration and Continuous Deployment strategies are used.
+- Docker - Docker is a standard tool for packaging and deploying applications, especially when Continuous Integration and Continuous Deployment strategies are used. Here's [a link to a Docker cheat sheet](https://www.docker.com/sites/default/files/Docker_CheatSheet_08.09.2016_0.pdf) which includes examples of the most common commands, such as how to list and remove images and containers.
 
 # Clone Git repo and build Docker image
 
 ## Steps
 
-### Step 1: Clone Git repo with "starter" app
+### Step 1: Download ATP client credentials (wallet)
 
-To allow you to focus on the SODA APIs, you will be cloning a starter application. The application is wired up to provide a REST API to a front-end app, but it is not completely implemented. You will finish building out the app in the next lab.
+With Oracle Autonomous Database, data is encrypted both at rest and over the network. For network encryption to work, clients need to have the correct encryption keys and related connection details. In this step, you'll learn how to access and configure these credentials so that various clients can connect to the database.
+
+- Within your cloud account, navigate to the Autonomous Transaction Processing service page and click the name of the ATP instance you would like to connect to. This will take you to the Database Details page for that instance.
+
+  ![select atp instance](images/2/select-atp-instance.png)
+
+- Click the **DB Connection** button to open a dialog with connection related information.
+
+  ![db connection](images/2/db-connection.png)
+
+- Click the **Download** button to download your client credentials.
+
+  ![download](images/2/download.png)
+
+- Enter a password for the client credentials, then click **Download**. Note that **the password entered will not be used in this lab** because you will be using auto-login capable clients. 
+
+  ![password](images/2/password.png)
+
+  After clicking **Download**, the client credentials will be downloaded to your machine as a zip file. These files should be treated securely to prevent unauthorized database access.
+
+- Extract the contents of the zip file to a directory that has the same name as the zip file. Note the absolute path to the client credentials directory on your machine as you'll need that later on when mapping a Docker volume.
+
+- Open the **sqlnet.ora** file in the client credentials directory. Change the **DIRECTORY** value from `"?/network/admin"` to `"/db_credentials"`, then save your changes. In Step 4, the `/db_credentials` path will be mapped to the actual location of the client credentials as a Docker volume.
+
+### Step 2: Clone Git repo with the "starter" app
+
+To allow you to focus primarily on the SODA APIs, you will be cloning a starter application. The application is wired up to provide a REST API to a front-end app, but it is not 100% complete. You will finish building out the app in the next lab.
 
 - Open a command line terminal on your machine and navigate to a directory where you'd like to download the starter app, then run the following command:
 
   ```
   git clone https://github.com/dmcghan/soda-app.git
   ```
-- Once the application has finished downloading, change directories into the **soda-app** directory to see the files included with the app. See the README ([sometimes easier to read online](https://github.com/dmcghan/soda-app)) for information on how the application works. Note the absolute path to the application directory as you'll need that in a subsequent step.
+- Once the application has finished downloading, change directories into the **soda-app** directory to see the files included with the app. The README file ([sometimes easier to read online](https://github.com/dmcghan/soda-app)) provides an overview of how the application works. Note the absolute path to the application directory as you'll need that in Step 4.
 
-### Step 2: Build Docker image
+### Step 3: Build Docker image
 
 In this step, you will build a docker image to host the application downloaded in the previous step.
 
@@ -42,12 +69,45 @@ In this step, you will build a docker image to host the application downloaded i
 
   That command will create an image with the tag **soda-app-image**. The docker image may take a few minutes to build as there are a fair number of dependencies. While the image is building, take a moment to review the Dockerfile so that you have a better understanding of what's included.
 
-### Step 3: Run Docker image and test sample app
+  When complete, the final output of the Docker build should look something like the following:
+
+  ```
+  > oracledb@4.0.0 install /usr/lib/node_modules/oracledb
+  > node package/install.js
+  
+  oracledb ********************************************************************************
+  oracledb ** Node-oracledb 4.0.0 installed for Node.js 10.16.2 (linux, x64)
+  oracledb **
+  oracledb ** To use node-oracledb:
+  oracledb ** - Oracle Client libraries (64-bit) must be configured with ldconfig or LD_LIBRARY_PATH
+  oracledb ** - To get libraries, install an Instant Client Basic or Basic Light package from
+  oracledb **   https://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
+  oracledb **
+  oracledb ** Installation instructions: https://oracle.github.io/node-oracledb/INSTALL.html
+  oracledb ********************************************************************************
+  
+  + oracledb@4.0.0
+  added 1 package in 0.652s
+  + todomvc@0.1.1
+  added 51 packages from 37 contributors in 3.735s
+  v10.16.2
+  6.9.0
+  Installed
+  Removing intermediate container cc93a1a3bdb1
+  ---> 3d5a42ac4212
+  Step 6/6 : CMD ["pm2-runtime", "/app/process.json"]
+  ---> Running in 920b7d297959
+  Removing intermediate container 920b7d297959
+  ---> a089c2999dc3
+  Successfully built a089c2999dc3
+  Successfully tagged soda-app-image:latest
+  ```
+
+### Step 4: Run Docker image and test sample app
 
 With the Docker image built, you're now ready to run a container based on the image. In this step, you'll start a docker container which maps some ports and directories on your host machine to the docker container. 
 
-- Locate the client credentials zip file that was downloaded in Step 2 of the previous lab. Extract the contents of the zip file to a directory that has the same name as the zip file. Note the absolute path the directory on your machine as you'll need that in a subsequent step.
-- Open the **database.js** file in the **config** directory. Replace the `[SERVICE_NAME]` token for the `connectString` property to the connect string that ends with `_tp` in the **tnsnames.ora** file in the client credentials directory. For example, if you database name is "testdb" then the correct `connectString` value will be `testdb_tp`.
+- Open the **database.js** file in the **config** directory. Replace the `[SERVICE_NAME]` token for the `connectString` property to the connect string that ends with `_tp` in the **tnsnames.ora** file in the client credentials directory. For example, if you database name is "TODODB" then the correct `connectString` value will be `TODODB_tp`.
 - Copy and paste the following terminal command into your favorite text editor: 
 
   ```shell
@@ -65,7 +125,7 @@ With the Docker image built, you're now ready to run a container based on the im
   docker run -it \
     --name soda-app-container \
     -v /Users/username/Documents/soda-hol/app-start:/app \
-    -v /Users/username/Downloads/Wallet_testdb:/db_credentials \
+    -v /Users/username/Downloads/Wallet_TODODB:/db_credentials \
     -p 3000:3000 \
     soda-app-image:latest
   ```

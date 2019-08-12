@@ -2,25 +2,24 @@
 
 ## Introduction
 
-When you create an Autonomous Transaction Processing (ATP) instance, you are prompted for a password for the ADMIN user. The ADMIN user account should be used for administrative purposes only, not for typical application development. In this lab, you will use the ADMIN account to create a new user for the todo tracking app.
+When you create an Autonomous Transaction Processing (ATP) database instance, you are prompted for a password for the ADMIN user. The ADMIN user account should be used for administrative purposes only, not for typical application development. In this lab, you will use the ADMIN account to create a new user for the todo tracking app.
 
 ## Objectives
 
 - Sign-in to the Oracle Public Cloud
-- Connect to an ATP instance from SQL Developer
+- Connect to an ATP instance from SQL Developer Web
 - Create a database user with SODA privileges
 
 ## Required Artifacts
 
-- Oracle Public Cloud account credentials - You may use your own cloud account, a cloud account that you obtained through a trial, or a training account whose details were given to you by an Oracle instructor.
-- ATP instance and ADMIN credentials - This lab assumes that an ATP instance has already been created and that you have the ADMIN password. You may create an ATP instance if needed before continuing, just note the ADMIN password specified when creating the instance.
-- SQL Developer - SQL Developer is a free, integrated development environment that simplifies the development and management of Oracle Database in both traditional and Cloud deployments. Download the latest version for your operating system [here](https://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html).
+- Oracle Public Cloud account credentials - You may use your own cloud account, a cloud account that you obtained through a trial, or a training account provided by an Oracle instructor.
+- ATP instance and ADMIN credentials - This lab assumes that an ATP instance has already been created and that you have the ADMIN password. You may create an ATP instance if needed before continuing, just make a note of the ADMIN password specified when creating the instance.
 
 # Create a DB user with SODA privileges
 
 ## Steps
 
-### Step 1: Sign in to Oracle Cloud Infrastructure console
+### Step 1: Sign in to the Oracle Cloud Infrastructure console
 
 In this step, you will sign into your Oracle cloud account so that you can work with various services using a GUI.
 
@@ -38,11 +37,11 @@ In this step, you will sign into your Oracle cloud account so that you can work 
 
   Once you've successfully authenticated, you'll be redirected to the Oracle Cloud Infrastructure dashboard where you can start working with various cloud services.
 
-### Step 2: Download ATP client credentials (wallet)
+### Step 2: Connect to ATP from SQL Developer Web
 
-With Oracle Autonomous Database, data is encrypted both at rest and while communicating with the database. For network encryption to work, clients need to have the correct encryption keys and related connection details. In this step, you'll learn how to access these credentials so that various clients can connect to the database.
+The easiest way to connect to an ATP instance is using SQL Developer Web. In this step, you will learn how to access SQL Developer Web and log in with the ADMIN account.
 
-- Open the services menu by clicking the "hamburger" icon in the upper left-hand corner, then select **Autonomous Transaction Processing**.
+- Open the services menu by clicking the Navigation Drawer icon in the upper left-hand corner, then select Autonomous Transaction Processing.
 
   ![services menu atp](images/1/services-menu-atp.png)
 
@@ -50,55 +49,27 @@ With Oracle Autonomous Database, data is encrypted both at rest and while commun
 
   ![select atp instance](images/1/select-atp-instance.png)
 
-- Click the **DB Connection** button to open a popup menu with connection related information.
+- Click the **Service Console** button. This will open the ATP Service Console in a new window.
 
-  ![db connection](images/1/db-connection.png)
+  ![click service console](images/1/click-service-console.png)
 
-- Click the **Download** button to download your client credentials.
+- Click the **Development** option in the menu on the left, then click the **SQL Developer Web** option. This will open SQL Developer Web in a new window.
 
-  ![download](images/1/download.png)
+  ![click service console](images/1/click-development-sql-dev-web.png)
 
-- Enter a password for the client credentials, then click **Download**. Note that **the password entered will not be used in this lab** because you will be using auto-login capable clients. 
+- Log into SQL Developer Web using **admin** as the user name (case insensitive) and the admin password (case sensitive) that was provided when the ATP instance was created, then click **Sign in**.
 
-  ![password](images/1/password.png)
+  ![click service console](images/1/sql-dev-web-auth.png)
 
-  After clicking **Download**, the client credentials will be downloaded to your machine as a zip file. These files should be treated securely. 
+  Once authenticated, you should see a GUI similar to SQL Developer that will allow you to work with the ATP instance.
 
-### Step 3: Connect to ATP from SQL Developer
-
-Now that you've downloaded the client credentials for your ATP instance, you can use them to connect to the database from SQL Developer. Be sure to use the latest version of SQL Developer so that you have the latest features for connecting to cloud databases.
-
-- Start SQL Developer and then click the new connection button in the upper left-hand corner.
-
-  ![sql developer](images/1/sql-developer.png)
-
-- Use the following details to create the new connection:
-
-    | Property           | Value                                             |
-    | ------------------ | ------------------------------------------------- |
-    | Name               | **atp.admin** (or any connection name you prefer) |
-    | Username           | **admin**                                         |
-    | Password           | admin password*                                   |
-    | Save Password      | **check** to save the password                    |
-    | Connection Type    | **Cloud Wallet**                                  |
-    | Configuration File | /path/to/**Wallet_[db_name].zip**                 |
-    | Service            | **[db_name]_high**                                |
-
-  \* The admin password was provided when the database was created, not when the client credentials were downloaded.
-  
-  ![new database connection](images/1/new-database-connection.png)
-
-  Click the **Test** button to test the connection details. If successful, click **Save** to save the connection for future use.
+  ![click service console](images/1/sql-dev-web.png)
 
 ### Step 4: Create a database user with SODA privileges
 
-Now that you are able to connect to the database as the ADMIN user, you will use that account to create a new user/schema that will be used for the todo app. 
+Now that you are connected to the database as the ADMIN user, you will use that account to create a new user/schema that will be used for the todo app. 
 
-- Click the "plus" sign next to the connection you created in the previous step. This will connect to the database and open a SQL Worksheet.
-
-  ![open connection](images/1/open-connection.png)
-
-- Enter the following code in the SQL Worksheet:
+- Enter the following code in the **[Worksheet]**:
 
   ```sql
   create user todo_soda 
@@ -114,14 +85,36 @@ Now that you are able to connect to the database as the ADMIN user, you will use
   grant soda_app to todo_soda;
   ```
 
-  The last line of the code is the most significant with respect to SODA. That line grants the SODA_APP role to the TODO_SODA user, giving that user the necessary privileges to use the SODA APIs.
+  The last line of the code is the most significant with respect to SODA. That line grants the **SODA_APP** role to the **TODO_SODA** user, giving that user the necessary privileges to use the SODA APIs.
 
-- To run the code, click the "Run Script" button above the SQL Worksheet.
+- To run the code, click the "Run Script" button.
 
   ![run script](images/1/run-script.png)
 
-  Look at the Script Output window at the bottom of the SQL Worksheet to ensure the script ran successfully.
+  Look at the **Script Output** tab at the bottom of the worksheet to ensure the script ran successfully.
+
+  ![run script](images/1/script-output.png)
+
+- Finally, execute the following script as before. This will allow the **TODO_SODA** user to connect to SQL Developer Web as well:
+  ```sql
+  begin
+
+    ords_admin.enable_schema(
+      p_enabled => true,
+      p_schema => 'TODO_SODA',
+      p_url_mapping_type => 'BASE_PATH',
+      p_url_mapping_pattern => 'TODO_SODA',
+      p_auto_rest_auth => true
+    );
+
+    commit;
+    
+  end;
+  ```
+  Verify that the script ran successfully by looking at the **Script Output** tab.
+
+  ![run script](images/1/script-output-2.png)
 
 ### Summary
 
-At this point, you are able to create a secure connection to your ATP instance from SQL Developer as the ADMIN user. You've used that user to create an application user/schema that will be used in subsequent labs to host the todo application data.
+At this point, you are able to connect to your ATP instance from SQL Developer Web as the ADMIN user. You've used the ADMIN user to create an application user/schema that will be used in subsequent labs to host the todo application data.
