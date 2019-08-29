@@ -1,36 +1,19 @@
 var labGuide = angular.module('labGuide', ['ngMaterial', 'ngSanitize']);
 
 labGuide.config(function ($mdThemingProvider) {
-    var whiteBackground = $mdThemingProvider.extendPalette('grey', {
-      '50': '#fefefe'
-    });
-    $mdThemingProvider.definePalette('whiteBackground', whiteBackground);
-    $mdThemingProvider.theme('default')
-        .primaryPalette('blue')
-        .accentPalette('orange')
-        .warnPalette('red')
-        .backgroundPalette('whiteBackground');
-    /*$mdThemingProvider.theme('ttc')
-        .primaryPalette('blue')
-        .accentPalette('light-blue')
-        .warnPalette('red')
-        .backgroundPalette('whiteBackground');
-    $mdThemingProvider.theme('theme-0')
-        .primaryPalette('deep-purple')
-        .accentPalette('amber')
-        .warnPalette('red')
-        .backgroundPalette('whiteBackground');
-    $mdThemingProvider.theme('theme-1')
-        .primaryPalette('light-green')
-        .accentPalette('amber')
-        .warnPalette('red')
-        .backgroundPalette('whiteBackground');
-    $mdThemingProvider.theme('theme-2')
-        .primaryPalette('amber')
-        .accentPalette('blue')
-        .warnPalette('brown')
-        .backgroundPalette('whiteBackground');*/
-    $mdThemingProvider.alwaysWatchTheme(true);
+  var whiteBackground = $mdThemingProvider.extendPalette('grey', {
+    '50': '#fefefe'
+  });
+
+  $mdThemingProvider.definePalette('whiteBackground', whiteBackground);
+
+  $mdThemingProvider.theme('default')
+      .primaryPalette('blue')
+      .accentPalette('orange')
+      .warnPalette('red')
+      .backgroundPalette('whiteBackground');
+
+  $mdThemingProvider.alwaysWatchTheme(true);
 });
 
 labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sanitize', '$sce', '$mdDialog', '$mdToast' 
@@ -72,13 +55,13 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
               //$scope.version = {};
               $scope.manifest = res.data;
               console.log("json",$scope.manifest)
-              if($scope.manifest.workshop.interactive){
-                // $scope.enableInteractive = true;
-                $scope.interactive = {
-                      src: $scope.manifest.workshop.interactive
-                      , title: "Interactive Tour"
-                  };
-              }
+              // if($scope.manifest.workshop.interactive){
+              //   // $scope.enableInteractive = true;
+              //   $scope.interactive = {
+              //         src: $scope.manifest.workshop.interactive
+              //         , title: "Interactive Tour"
+              //     };
+              // }
 
               // if($scope.manifest.workshop.theme){
               //     console.log("Theme selected",$scope.manifest.workshop.theme);

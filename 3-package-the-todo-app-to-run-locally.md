@@ -1,4 +1,4 @@
-# Module 3: Clone Git repo and build Docker image
+# Module 3: Package the Todo App to Run Locally
 
 ## Introduction
 

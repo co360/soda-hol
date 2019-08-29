@@ -1,8 +1,8 @@
-# Module 1: Create an ATP database
+# Module 1: Create an ATP Instance
 
 ## Introduction
 
-In this module, you will create an Autonomous Transaction Processing (ATP) database. The database will be used to store the data related to the todo tracking application.
+In this module, you will create an Autonomous Transaction Processing (ATP) instance. The database will be used to store the data related to the todo tracking application.
 
 ## Objectives
 

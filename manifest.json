@@ -1,26 +1,30 @@
 {
-  "workshop": {
+  "lab": {
     "title": "Node.js SODA APIs on Oracle Autonomous Database Hands-on Lab",
-    "labs": [
+    "modules": [
       {
         "filename": "README.md",
         "title": "Lab Introduction"
       },
       {
-        "filename": "1-create-an-apex-workspace.md",
-        "title": "Module 1: Create an APEX Workspace"
+        "filename": "1-create-an-atp-instance.md",
+        "title": "Module 1: Create an ATP Instance"
       },
       {
-        "filename": "2-create-an-app-from-a-spreadsheet.md",
-        "title": "Module 2: Create an App from a Spreadsheet"
+        "filename": "2-create-a-database-user-with-soda-privileges.md",
+        "title": "Module 2: Create a Database User with SODA Privileges"
       },
       {
-          "filename": "3-build-database-objects-in-autonomous-database.md",
+          "filename": "3-package-the-todo-app-to-run-locally.md",
           "title": "Module 3: Build Database Objects in Autonomous Database"
       },
       {
-        "filename": "4-create-and-modify-an-apex-app.md",
-        "title": "Module 4: Create and Modify APEX Application"
+        "filename": "4-use-soda-apis-for-crud-operations.md",
+        "title": "Module 4: Use SODA APIs for CRUD Operations"
+      },
+      {
+        "filename": "5-use-sql-features-for-json.md",
+        "title": "Module 5: Use SQL Features for JSON"
       }
     ]
   }
