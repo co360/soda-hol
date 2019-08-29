@@ -71,7 +71,7 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
           if (parseQueryString()) {
             console.log('Parsed query string. Going to: ' + $scope.currentFilename);
 
-            $scope.getLabGuide({
+            $scope.loadModule({
               filename: $scope.currentFilename
             });
           } else {
@@ -98,7 +98,7 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
         }
 
         $scope.showHomePage = function() {
-          $scope.getLabGuide({
+          $scope.loadModule({
             filename: 'README.md'
           });
         };
@@ -147,20 +147,20 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
             );
         }
 
-        $scope.getLabGuide = function (lab) {
-            $scope.currentFilename = lab.filename;
+        $scope.loadModule = function (module) {
+            $scope.currentFilename = module.filename;
 
             if ('URLSearchParams' in window) {
               var searchParams = new URLSearchParams(window.location.search);
 
-              searchParams.set("page", lab.filename);
+              searchParams.set("page", module.filename);
 
               var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
 
               history.replaceState(null, '', newRelativePathQuery);
             }
 
-            $scope.loadContent(lab.filename);
+            $scope.loadContent(module.filename);
 
             setTimeout(function () {
               $("#labguide a").each(function () {

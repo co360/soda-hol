@@ -53,9 +53,9 @@
       </md-toolbar>
       <md-content style="height: 110%;">
         <md-list>
-            <md-list-item class="md-3-line toc-item infra" ng-repeat="module in manifest.lab.modules" ng-click="getLabGuide(module); close();">
+            <md-list-item class="md-3-line toc-item infra" ng-repeat="module in manifest.lab.modules" ng-click="loadModule(module); close();">
                 <div class="md-list-item-text infra">
-                    <h3 class="infra" style="overflow: visible; white-space: normal;">{{lab.title}}</h3>
+                    <h3 class="infra" style="overflow: visible; white-space: normal;">{{module.title}}</h3>
                 </div>
                 <md-divider></md-divider>
             </md-list-item>
