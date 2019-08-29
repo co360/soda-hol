@@ -1,4 +1,4 @@
-# Module 5: Use SQL features for JSON
+# Module 5: Use SQL Features for JSON
 
 ## Introduction
 
@@ -146,4 +146,11 @@ Often times, JSON data comes from third party systems. In these instances, you m
 
 ## Summary
 
-At this point, you've only scratched the surface of the JSON related features that have been added to Oracle Database. If you'd like to learn more, consult the [Oracle Database JSON Developer's Guide](https://docs.oracle.com/en/database/oracle/oracle-database/18/adjsn/index.html) which contains details on many things this lab doesn't touch on, such as generating JSON from relational data, working with GeoJSON, and much more!
+You've completed this hands-on lab! At this point, you should have a basic understanding of the ATP, how to connect to ATP from SQL Developer Web and Node.js, how to use the SODA APIs for Node.js, and how to use some of the new JSON features of the Oracle Database.
+
+Use these links to get more information and continue learning:
+
+* [Oracle Autonomous Transaction Processing Cloud docs](https://docs.oracle.com/en/cloud/paas/atp-cloud/index.html)
+* [Creating a REST API with Node.js and Oracle Database](https://jsao.io/2018/03/creating-a-rest-api-with-node-js-and-oracle-database/)
+* [Using Oracle SQL Developer Web](https://docs.oracle.com/en/database/oracle/sql-developer-web/18.1/sdweb/sdw-help.html)
+* [Oracle Database JSON Developer's Guide](https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/index.html)

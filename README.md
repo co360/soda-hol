@@ -15,9 +15,9 @@ You will work to complete a todo tracking application. The front-end app  is bas
 
 | # | Module | Est. Time |
 | --- | --- | --- |
-| 1 | [Create an ATP instance](1-create-an-atp-database.md) | ? min |
-| 2 | [Create a DB user with SODA privileges](2-create-db-user-with-soda-privs.md) | ? min |
-| 3 | [Clone Git repo and build Docker image](3-clone-git-repo-and-build-docker-image.md) | ? min |
+| 1 | [Create an ATP instance](1-create-an-atp-instance.md) | ? min |
+| 2 | [Create a DB user with SODA privileges](2-create-a-database-user-with-soda-privileges.md) | ? min |
+| 3 | [Clone Git repo and build Docker image](3-package-the-todo-app-to-run-locally.md) | ? min |
 | 4 | [Use SODA APIs for CRUD operations](4-use-soda-apis-for-crud-operations.md) | ? min |
 | 5 | [Use SQL features for JSON](5-use-sql-features-for-json.md) | ? min |
 

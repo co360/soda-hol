@@ -1,4 +1,4 @@
-# Module 2: Create a DB user with SODA privileges
+# Module 2: Create a Database User with SODA Privileges
 
 ## Introduction
 

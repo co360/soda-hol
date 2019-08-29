@@ -54,21 +54,7 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
             function (res) {
               //$scope.version = {};
               $scope.manifest = res.data;
-              console.log("json",$scope.manifest)
-              // if($scope.manifest.workshop.interactive){
-              //   // $scope.enableInteractive = true;
-              //   $scope.interactive = {
-              //         src: $scope.manifest.workshop.interactive
-              //         , title: "Interactive Tour"
-              //     };
-              // }
-
-              // if($scope.manifest.workshop.theme){
-              //     console.log("Theme selected",$scope.manifest.workshop.theme);
-              //     if($scope.manifest.workshop.theme == 'ttc'){
-              //         $scope.theme = 'ttc';
-              //     }
-              // }
+              console.log("json",$scope.manifest);
 
               preparePage();
             }, 
@@ -110,51 +96,6 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
 
           return success;
         }
-
-        // $scope.$watch('version.selected', function() {
-        //   if(typeof $scope.version == 'undefined' || typeof $scope.version.selected ==='undefined') {
-        //     $scope.theme = 'default';
-        //   }
-
-        //   if($scope.manifest && 'undefined' != typeof $scope.version.selected) {
-        //     console.log('Version selcted: ' + $scope.version.selected);
-        //     var themeNumber = $scope.versionsAvailable.findIndex(elem => elem.name === $scope.version.selected);
-        //     if(themeNumber >= 0) {
-        //       $scope.theme = 'theme-' + themeNumber;
-        //     }
-        //     else $scope.theme = 'default';
-
-        //     //check this list for the filename in the query string -- if there, choose it. if not there, revert to 0th entry and give an error toast.
-        //     let labsInThisVersion = $scope.manifest.workshop.labs.filter(lab => lab.labels && lab.labels.version == $scope.version.selected);
-        //     if(labsInThisVersion.length > 0) {
-        //       var newLab = labsInThisVersion.find(elem => elem.filename === $scope.currentFilename) || labsInThisVersion[0];
-        //       var filename = "";
-        //       if(newLab) {
-        //           filename = newLab.filename;
-        //       }
-        //       if(filename != "") {
-        //         $scope.previousSelection = $scope.selection;
-        //         $scope.selection = "lab";
-        //         $scope.currentFilename = filename;
-        //         $scope.getLabGuide({ filename: filename});
-        //       }
-        //     }
-        //     else { //Version in query string not found
-        //       console.log('Version: ' + $scope.version.selected + ' not found');
-        //       $scope.showCustomToast({'text': 'Version: ' + $scope.version.selected + ' not found!'}, 5000, false, true);
-        //       $scope.showHomeOrVersionSelectPage();
-        //     }
-        //   }
-        // }, true);
-
-        // $scope.resetVersionAndFilename = function() {
-        //   history.replaceState('', '', window.location.pathname);
-        //   $scope.currentFilename = "";
-        //   $scope.previousSelection = $scope.selection;
-        //   $scope.selection = "chooseVersion";
-        //   $scope.version.selected = undefined;
-        //   // updateFilenameInHeader(undefined);
-        // }
 
         $scope.showHomePage = function() {
           $scope.getLabGuide({
@@ -205,27 +146,6 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
               }
             );
         }
-        // var updateFilenameInHeader = function(filename) {
-        //   var headerElement = document.getElementsByTagName('h2')[0];
-        //   var labElement = document.createElement('span');
-        //   labElement.textContent = '- ' + filename;
-
-        //   if(headerElement.children[1])
-        //     headerElement.removeChild(headerElement.children[1]);
-
-        //   if(filename)
-        //     headerElement.appendChild(labElement);
-
-        // }
-
-        // var loadPage = window.history.state;
-        // window.onpopstate = function(event) {
-        //   console.log('popstate event was fired');
-
-        //     if (loadPage) {
-        //     }
-
-        // };
 
         $scope.getLabGuide = function (lab) {
             $scope.currentFilename = lab.filename;

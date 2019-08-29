@@ -36,7 +36,7 @@
           <img src="https://oracle.github.io/learning-library/workshops/common-content/images/common/hamburger.png" class="menu-hamburger infra" />
         </md-button>
         <h2 class="infra" flex="noshrink">
-          <span class="infra">{{manifest.workshop.title}}</span>
+          <span class="infra">{{manifest.lab.title}}</span>
         </h2>
         <div flex="grow" layout="row" layout-align="end center" >
           <md-button class="high-contrast-hover" aria-label="Home" ng-click="showHomePage()">
@@ -53,10 +53,9 @@
       </md-toolbar>
       <md-content style="height: 110%;">
         <md-list>
-            <md-list-item class="md-3-line toc-item infra" ng-repeat="lab in manifest.workshop.labs" ng-click="getLabGuide(lab); close();">
+            <md-list-item class="md-3-line toc-item infra" ng-repeat="module in manifest.lab.modules" ng-click="getLabGuide(module); close();">
                 <div class="md-list-item-text infra">
                     <h3 class="infra" style="overflow: visible; white-space: normal;">{{lab.title}}</h3>
-                    <p class="infra">{{lab.description}}</p>
                 </div>
                 <md-divider></md-divider>
             </md-list-item>
