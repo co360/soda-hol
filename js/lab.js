@@ -106,9 +106,7 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
               filename: $scope.currentFilename
             });
           } else {
-            console.log('Going to Home.md.');
-            //upon manifest load, display Home
-            $scope.currentFilename = "Home.md";
+            $scope.showHomePage();
           }
         };
 
@@ -218,8 +216,7 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
               }, 
               function (err) {
                 $scope.showCustomToast({'text': 'File: ' + page + ' not found!'}, 5000, false, true);
-                $scope.currentFilename = 'README.md';
-                $scope.getLabGuide({ filename: 'README.md' });
+                $scope.showHomePage();
                 console.log('Error getting lab guide markdown!');
                 console.log(err);
               }
@@ -283,7 +280,7 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
             $(step).addClass('plus');
             $(step).removeClass('minus');
           };
-          
+
           var fadeInStep = function (step) {
             $(step).nextUntil("#labguide h1, #labguide h2, #labguide h3").fadeIn();
             $(step).addClass('minus');
