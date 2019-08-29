@@ -1,4 +1,4 @@
-# Lab 4: Use SQL features for JSON
+# Module 5: Use SQL features for JSON
 
 ## Introduction
 

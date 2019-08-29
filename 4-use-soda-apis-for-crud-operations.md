@@ -1,10 +1,10 @@
-# Lab 3: Use SODA APIs for CRUD Operations
+# Module 4: Use SODA APIs for CRUD Operations
 
 ## Introduction
 
-In this lab, you will extend the Node.js starter application by adding the appropriate SODA API calls and related code. By the end of the lab, all of the basic CRUD functionality to work with todos in the todo app will be complete.
+In this module, you will extend the Node.js starter application by adding the appropriate SODA API calls and related code. By the end of the module, all of the basic CRUD functionality to work with todos in the todo app will be complete.
 
-Note that the Docker container created in the previous lab uses a program to monitor changes you make to the application code on your host operating system. When you update the code and save your changes the app should restart automatically. If the code has an error that prevents the app from starting correctly, then the container may eventually stop running. If this happens, you can restart the container with the following command:
+Note that the Docker container created in the previous module uses a program to monitor changes you make to the application code on your host operating system. When you update the code and save your changes the app should restart automatically. If the code has an error that prevents the app from starting correctly, then the container may eventually stop running. If this happens, you can restart the container with the following command:
 
 ```
 docker start -i soda-app-container
@@ -31,9 +31,9 @@ With node-oracledb (the Oracle Database driver for Node.js), SODA APIs are expos
 
 - Open the **database.js** file in the **util** directory.
 - Locate the `initialize` function and replace the comment related to adding SODA code with code to create a collection named "todos". [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#-262-creating-soda-collections) for details on creating collections. 
-- To validate your code, open SQL Developer and create a new connection for the todo_soda user. See Lab 1 to get the password for the todo_soda user (in the SQL script to create the user). Lab 1 also has the steps to create a new connection. Once created, open the connection to todo_soda and then open the tables node in the database objects tree. If you see a TODOS table then you know you've successfully created the "todos" collection. Do your best to write the code on your own, but [use this initialize example](solutions/initialize.js) if needed.
+- To validate your code, open SQL Developer Web and log in as the **todo_soda** user. See Module 2 to get the password for the **todo_soda** user (in the SQL script to create the user). Once logged in, open the tables node in the database objects tree. If you see a **TODOS** table then you know you've successfully created the "todos" collection. Do your best to write the code on your own, but [use this initialize example](solutions/initialize.js) if needed.
 
-  ![todos table](images/2/todos-table.png)
+  ![todos table](images/todos-table.png)
 
   As you can see, SODA collections are backed by traditional tables in Oracle. In the next lab, you'll see how you can use those tables along with some new SQL functions to work with the JSON data in different ways.
 

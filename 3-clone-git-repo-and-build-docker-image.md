@@ -1,8 +1,8 @@
-# Lab 2: Clone Git repo and build Docker image
+# Module 3: Clone Git repo and build Docker image
 
 ## Introduction
 
-In this lab, you will clone the public GitHub repo that will serve as the starting point for the Node.js app that you will be extending in the next lab. To run the app, you will build a docker image that includes Node.js and various dependencies necessary for the application to run. This configuration will allow you to work on the application code from your host operating system while minimizing any cross platform issues.
+In this module, you will clone the public GitHub repo that will serve as the starting point for the Node.js app that you will be extending in the next module. To run the app, you will build a docker image that includes Node.js and various dependencies necessary for the application to run. This configuration will allow you to work on the application code from your host operating system while minimizing any cross platform issues.
 
 ## Objectives
 
@@ -48,7 +48,7 @@ With Oracle Autonomous Database, data is encrypted both at rest and over the net
 
 ### Step 2: Clone Git repo with the "starter" app
 
-To allow you to focus primarily on the SODA APIs, you will be cloning a starter application. The application is wired up to provide a REST API to a front-end app, but it is not 100% complete. You will finish building out the app in the next lab.
+To allow you to focus primarily on the SODA APIs, you will be cloning a starter application. The application is wired up to provide a REST API to a front-end app, but it is not 100% complete. You will finish building out the app in the next module.
 
 - Open a command line terminal on your machine and navigate to a directory where you'd like to download the starter app, then run the following command:
 
@@ -136,10 +136,10 @@ With the Docker image built, you're now ready to run a container based on the im
   Initializing web server module
   Web server listening on localhost:3000
   ```
-- Test the image by opening a browser and navigating to **localhost:3000**. If you see the following app, then you're ready to proceed to the next lab.
+- Test the image by opening a browser and navigating to **localhost:3000**. If you see the following app, then you're ready to proceed to the next module.
 
   ![todo app](images/2/todo-app.png)
 
 ### Summary
 
-At this point, you have the starter application running in a docker container. If you test the app by adding some todos, you'll find that the todos are not saved. This is because the CRUD functionality for the REST API hasn't been added yet. You'll add that logic using the SODA APIs in the next lab.
+At this point, you have the starter application running in a docker container. If you test the app by adding some todos, you'll find that the todos are not saved. This is because the CRUD functionality for the REST API hasn't been added yet. You'll add that logic using the SODA APIs in the next module.
