@@ -1,6 +1,6 @@
-var labGuide = angular.module('labGuide', ['ngMaterial', 'ngSanitize']);
+var hol = angular.module('hol', ['ngMaterial', 'ngSanitize']);
 
-labGuide.config(function ($mdThemingProvider) {
+hol.config(function ($mdThemingProvider) {
   var whiteBackground = $mdThemingProvider.extendPalette('grey', {
     '50': '#fefefe'
   });
@@ -16,11 +16,11 @@ labGuide.config(function ($mdThemingProvider) {
   $mdThemingProvider.alwaysWatchTheme(true);
 });
 
-labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sanitize', '$sce', '$mdDialog', '$mdToast' 
+hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '$sce', '$mdDialog', '$mdToast' 
   , function ($scope, $http, $mdSidenav, $sanitize, $sce, $mdDialog, $mdToast) {
       $scope.toast = $mdToast;
       $scope.toastPromise = {};
-      $scope.showCustomToast = function(data, delay, showReload, alwaysShow) {
+      $scope.showCustomToast = function(data, delay, alwaysShow) {
         if($scope.selection === 'lab' || alwaysShow) {
           $mdToast.show({
             hideDelay   : delay,
@@ -32,7 +32,6 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
             bindToController : true,
             template : '<md-toast> \
                           <span class="md-toast-text">'+ data.text +'</span>' +
-                          (showReload ? '<md-button class="md-highlight" ng-click="refreshLabGuide($event)"> Reload </md-button> ' : '') +
                            '<md-button ng-click="closeToast()"> \
                              Close \
                            </md-button> \
@@ -103,17 +102,6 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
           });
         };
 
-        // $scope.showOrHideInteractiveTour = function() {
-        //   if($scope.selection == 'interactive') {
-        //     $scope.selection = $scope.previousSelection;
-        //     $scope.previousSelection = 'interactive';
-        //   }
-        //   else {
-        //     $scope.previousSelection = $scope.selection;
-        //     $scope.selection = 'interactive';
-        //   }
-        // };
-
         $scope.loadContent = function (page) {
             console.log('Loading page: ' + page);
 
@@ -139,7 +127,7 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
                 }, 0);
               }, 
               function (err) {
-                $scope.showCustomToast({'text': 'File: ' + page + ' not found!'}, 5000, false, true);
+                $scope.showCustomToast({'text': 'File: ' + page + ' not found!'}, 5000, true);
                 $scope.showHomePage();
                 console.log('Error getting lab guide markdown!');
                 console.log(err);
@@ -168,7 +156,7 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
                   $(this).on("click", function (event) {
                     event.preventDefault();
                     console.log('clicked on: ' + this.getAttribute('href'));
-                    $scope.getLabGuide({
+                    $scope.loadModule({
                       filename: this.getAttribute('href')
                     });
                   });
