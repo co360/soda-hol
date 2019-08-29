@@ -2,7 +2,7 @@ var labGuide = angular.module('labGuide', ['ngMaterial', 'ngSanitize']);
 
 labGuide.config(function ($mdThemingProvider) {
     var whiteBackground = $mdThemingProvider.extendPalette('grey', {
-        '50': '#fefefe'
+      '50': '#fefefe'
     });
     $mdThemingProvider.definePalette('whiteBackground', whiteBackground);
     $mdThemingProvider.theme('default')
@@ -10,7 +10,7 @@ labGuide.config(function ($mdThemingProvider) {
         .accentPalette('orange')
         .warnPalette('red')
         .backgroundPalette('whiteBackground');
-    $mdThemingProvider.theme('ttc')
+    /*$mdThemingProvider.theme('ttc')
         .primaryPalette('blue')
         .accentPalette('light-blue')
         .warnPalette('red')
@@ -29,7 +29,7 @@ labGuide.config(function ($mdThemingProvider) {
         .primaryPalette('amber')
         .accentPalette('blue')
         .warnPalette('brown')
-        .backgroundPalette('whiteBackground');
+        .backgroundPalette('whiteBackground');*/
     $mdThemingProvider.alwaysWatchTheme(true);
 });
 
@@ -62,7 +62,7 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
           $mdToast.hide();
         }
 
-        $scope.theme = 'default';
+        //$scope.theme = 'default';
         $scope.selection = "";
 
 //        READ MANIFEST - THEME, INTERACTIVE, MENU
@@ -80,12 +80,12 @@ labGuide.controller('labGuideController', ['$scope', '$http', '$mdSidenav', '$sa
                   };
               }
 
-              if($scope.manifest.workshop.theme){
-                  console.log("Theme selected",$scope.manifest.workshop.theme);
-                  if($scope.manifest.workshop.theme == 'ttc'){
-                      $scope.theme = 'ttc';
-                  }
-              }
+              // if($scope.manifest.workshop.theme){
+              //     console.log("Theme selected",$scope.manifest.workshop.theme);
+              //     if($scope.manifest.workshop.theme == 'ttc'){
+              //         $scope.theme = 'ttc';
+              //     }
+              // }
 
               preparePage();
             }, 
