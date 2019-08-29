@@ -11,10 +11,10 @@ You will work to complete a todo tracking application. The front-end app  is bas
 * Use SODA APIs in Node.js to fetch and persist data in ATP
 * Use JSON functions in SQL to work with JSON data
 
-## Modules
+## Lab Modules
 
 | # | Module | Est. Time |
-| - | -      | -         |
+| --- | --- | --- |
 | 1 | [Create an ATP instance](1-create-an-atp-database.md) | ? min |
 | 2 | [Create a DB user with SODA privileges](2-create-db-user-with-soda-privs.md) | ? min |
 | 3 | [Clone Git repo and build Docker image](3-clone-git-repo-and-build-docker-image.md) | ? min |
@@ -33,15 +33,12 @@ You will work to complete a todo tracking application. The front-end app  is bas
 
    ![](images/0/get-started-email.png)
 
-### How to Get Your Free Cloud Trial Account
-[Click this link](https://myservices.us.oraclecloud.com/mycloud/signup?language=en&sourceType=:ex:tb:::RC_NAMK181011P00041:ATPHOL&SC=:ex:tb:::RC_NAMK181011P00041:ATPHOL&pcode=NAMK181011P00041) and complete all the required steps to get your free Oracle Cloud trial account. When you complete the registration process, you'll receive a $300 credit that will enable you to complete the lab for free. After the lab, you'll be able to use any remaining credits to continue to explore the Oracle Cloud.
-
 ### **Part 2**: Navigate to Module 1
 
 1. [Click here](1-create-an-atp-database.md) to navigate to Module 1. Alternatively, you can click the navigation menu icon in the upper-left corner of the browser window to see a list of modules in the lab.
 
 	 ![](images/0/lab-intro.png)
 
-2. Click **Module 1: Create an APEX Workspace**.
+2. Click **Module 1: Create an ATP instance**.
   
    ![](images/0/lab-contents.png)
