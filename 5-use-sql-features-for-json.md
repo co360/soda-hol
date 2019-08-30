@@ -15,13 +15,11 @@ In this lab, you will learn to use some of the SQL functions that have been adde
 
 - NA
 
-# Use SQL and PL/SQL features for JSON
+## Parts
 
-## Steps
+### **Part 1**: Using dot-notation syntax to query JSON data
 
-### Step 1: Using dot-notation syntax to query JSON data
-
-In this step, you will use dot-notation syntax to query the todo documents. The dot-notation syntax is essentially a table alias, followed by a JSON column name, followed by one or more field names — all separated by periods.
+In this part, you will use dot-notation syntax to query the todo documents. The dot-notation syntax is essentially a table alias, followed by a JSON column name, followed by one or more field names — all separated by periods.
 
 Here's an example query that uses dot-notation syntax to get the Phone property of the ShippingInstructions property of the JSON stored in the PO_DOCUMENT column of the J_PURCHASEORDER table.
 
@@ -43,9 +41,9 @@ See [this documentation](https://docs.oracle.com/en/database/oracle/oracle-datab
 
     Do your best to write the code on your own, but [use this dot notation example 2](solutions/dot-notation-2.sql) if needed.
 
-### Step 2: Using JSON_TABLE to project JSON relationally
+### **Part 2**: Using JSON_TABLE to project JSON relationally
 
-In addition to the dot notation syntax, there are several SQL functions that can be used to query JSON data, including JSON_EXISTS, JSON_VALUE, JSON_QUERY, and JSON_TABLE. JSON_TABLE, which projects JSON data as SQL columns, stands out for performance reasons (it only parses the document column once per row). In this step, you'll use JSON_TABLE to create a relational view over JSON data to simplify queries against it.
+In addition to the dot notation syntax, there are several SQL functions that can be used to query JSON data, including JSON_EXISTS, JSON_VALUE, JSON_QUERY, and JSON_TABLE. JSON_TABLE, which projects JSON data as SQL columns, stands out for performance reasons (it only parses the document column once per row). In this part, you'll use JSON_TABLE to create a relational view over JSON data to simplify queries against it.
 
 You use JSON_TABLE in a SQL FROM clause. It is a row source, meaning it generates a row of virtual-table data for each JSON value selected by a row path expression (row pattern). The columns of each generated row are defined by the column path expressions of the COLUMNS clause. 
 

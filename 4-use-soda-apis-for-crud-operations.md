@@ -19,13 +19,11 @@ docker start -i soda-app-container
 
 - NA
 
-# Update app to use SODA APIs
+## Parts
 
-## Steps
+### **Part 1**: Create a collection to store todos
 
-### Step 1: Create a collection to store todos
-
-The terminology used with document stores differs a little from what you might be used to in the relational world. For example, rather than tables that store rows, you work with collections that store documents. In this step, you will create a collection to store todo documents.
+The terminology used with document stores differs a little from what you might be used to in the relational world. For example, rather than tables that store rows, you work with collections that store documents. In this part, you will create a collection to store todo documents.
 
 With node-oracledb (the Oracle Database driver for Node.js), SODA APIs are exposed via a top level object returned from a synchronous method call on a connection object: `connection.getSodaDatabase()`. Once that object is obtained, a collection can be created via the asynchronous `soda.createCollection()` method.
 
@@ -37,9 +35,9 @@ With node-oracledb (the Oracle Database driver for Node.js), SODA APIs are expos
 
   As you can see, SODA collections are backed by traditional tables in Oracle. In the next lab, you'll see how you can use those tables along with some new SQL functions to work with the JSON data in different ways.
 
-### Step 2: Add documents to the collection
+### **Part 2**: Add documents to the collection
 
-With the todos collection in place, you can start to build out the CRUD functionality in the API related to todos. In this step, you will add the ability to add todo documents to the todos collection. [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#-263-creating-and-accessing-soda-documents) for details on adding documents to collections.
+With the todos collection in place, you can start to build out the CRUD functionality in the API related to todos. In this part, you will add the ability to add todo documents to the todos collection. [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#-263-creating-and-accessing-soda-documents) for details on adding documents to collections.
 
 - Open the **todos.js** file in the **db_apis** directory.
 - Locate the `create` function and replace the comment related to adding SODA code with code that does the following:
@@ -57,9 +55,9 @@ With the todos collection in place, you can start to build out the CRUD function
 
   ![blob content](images/3/blob-content.png)
 
-### Step 3: Fetch documents from the collection
+### **Part 3**: Fetch documents from the collection
 
-Now that todos are being stored in the collection, the next step is to add the ability to fetch them back out so they can be displayed in the todo app. As you saw in the previous step, document keys in SODA are stored as metadata - not as part of the document content. This is something you'll need to consider when building apps as clients often need the keys to work with REST APIs.
+Now that todos are being stored in the collection, the next thing to add is the ability to fetch them back out so they can be displayed in the todo app. As you saw in the previous part, document keys in SODA are stored as metadata - not as part of the document content. This is something you'll need to consider when building apps as clients often need the keys to work with REST APIs.
 
 - Return to the **todos.js** file in the **db_apis** directory.
 - Locate the `find` function and replace the comment related to adding SODA code with code that does the following:
@@ -69,9 +67,9 @@ Now that todos are being stored in the collection, the next step is to add the a
 
   ![fetched todo](images/3/fetched-todo.png)
 
-### Step 4: Update documents in the collection
+### **Part 4**: Update documents in the collection
 
-So far, you've implemented the "C" (create) and the "R" (read) of CRUD operations. In this step, you'll add the "U" - the ability to update existing todo documents. The app lets users change the name and status of todos and then issues an HTTP PUT request on the `/todos/:id` API endpoint, passing along the updated todo.
+So far, you've implemented the "C" (create) and the "R" (read) of CRUD operations. In this part, you'll add the "U" - the ability to update existing todo documents. The app lets users change the name and status of todos and then issues an HTTP PUT request on the `/todos/:id` API endpoint, passing along the updated todo.
 
 - Return to the **todos.js** file in the **db_apis** directory.
 - Locate the `update` function and replace the comment related to adding SODA code with code that does the following:
@@ -79,7 +77,7 @@ So far, you've implemented the "C" (create) and the "R" (read) of CRUD operation
   - Use the metadata returned from the update to determine if the update was successful. If it was then return true, otherwise (perhaps the key value passed in didn't exist) return false.
 - To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. Either mark the todo as complete or double-click on the name of an existing todo and change it. Then refresh the browser. If you see your changes have persisted across refreshes then the update functionality is working. Do your best to write the code on your own, but [use this update example](solutions/update.js) if needed.
 
-### Step 5: Remove documents from the collection
+### **Part 5**: Remove documents from the collection
 
 All that's left to complete the CRUD functionality is to add the ability to delete todos. The application allows individual todos to be deleted and for all todos marked as "complete" to be deleted at the same time.
 

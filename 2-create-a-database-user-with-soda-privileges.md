@@ -14,13 +14,11 @@ When you create an Autonomous Transaction Processing (ATP) database instance, yo
 
 - Oracle Public Cloud account credentials - You may use your own cloud account, a cloud account that you obtained through a trial, or a training account provided by an Oracle instructor.
 
-# Create a DB user with SODA privileges
+## Parts
 
-## Steps
+### **Part 2**: Connect to ATP from SQL Developer Web
 
-### Step 2: Connect to ATP from SQL Developer Web
-
-The easiest way to connect to an ATP instance is using SQL Developer Web. In this step, you will learn how to access SQL Developer Web and log in with the ADMIN account.
+The easiest way to connect to an ATP instance is using SQL Developer Web. In this part, you will learn how to access SQL Developer Web and log in with the ADMIN account.
 
 - Navigate to the Autonomous Transaction Processing page and click the name of the ATP instance you would like to connect to. This will take you to the Database Details page for that instance.
 
@@ -42,7 +40,7 @@ The easiest way to connect to an ATP instance is using SQL Developer Web. In thi
 
   ![click service console](images/sql-dev-web.png)
 
-### Step 4: Create a database user with SODA privileges
+### **Part 4**: Create a database user with SODA privileges
 
 Now that you are connected to the database as the ADMIN user, you will use that account to create a new user/schema that will be used for the todo app. 
 

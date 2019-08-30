@@ -6,23 +6,21 @@ In this module, you will clone the public GitHub repo that will serve as the sta
 
 ## Objectives
 
-- Download client credentials for secure connections
-- Clone the todo application's Git repo
-- Build a docker image to host the application
-- Run a docker container based on the image
+* Download client credentials for secure connections
+* Clone the todo application's Git repo
+* Build a docker image to host the application
+* Run a docker container based on the image
 
 ## Required Artifacts
 
 - Git - The todo application is hosted in GitHub so Git is used to clone the repo. If Git isn't available, you may opt to download the repo from GitHub as a zip file and extract the contents where you wish.
 - Docker - Docker is a standard tool for packaging and deploying applications, especially when Continuous Integration and Continuous Deployment strategies are used. Here's [a link to a Docker cheat sheet](https://www.docker.com/sites/default/files/Docker_CheatSheet_08.09.2016_0.pdf) which includes examples of the most common commands, such as how to list and remove images and containers.
 
-# Clone Git repo and build Docker image
+## Parts
 
-## Steps
+### **Part 1**: Download ATP client credentials (wallet)
 
-### Step 1: Download ATP client credentials (wallet)
-
-With Oracle Autonomous Database, data is encrypted both at rest and over the network. For network encryption to work, clients need to have the correct encryption keys and related connection details. In this step, you'll learn how to access and configure these credentials so that various clients can connect to the database.
+With Oracle Autonomous Database, data is encrypted both at rest and over the network. For network encryption to work, clients need to have the correct encryption keys and related connection details. In this part, you'll learn how to access and configure these credentials so that various clients can connect to the database.
 
 - Within your cloud account, navigate to the Autonomous Transaction Processing service page and click the name of the ATP instance you would like to connect to. This will take you to the Database Details page for that instance.
 
@@ -44,9 +42,9 @@ With Oracle Autonomous Database, data is encrypted both at rest and over the net
 
 - Extract the contents of the zip file to a directory that has the same name as the zip file. Note the absolute path to the client credentials directory on your machine as you'll need that later on when mapping a Docker volume.
 
-- Open the **sqlnet.ora** file in the client credentials directory. Change the **DIRECTORY** value from `"?/network/admin"` to `"/db_credentials"`, then save your changes. In Step 4, the `/db_credentials` path will be mapped to the actual location of the client credentials as a Docker volume.
+- Open the **sqlnet.ora** file in the client credentials directory. Change the **DIRECTORY** value from `"?/network/admin"` to `"/db_credentials"`, then save your changes. In part 4, the `/db_credentials` path will be mapped to the actual location of the client credentials as a Docker volume.
 
-### Step 2: Clone Git repo with the "starter" app
+### **Part 2**: Clone Git repo with the "starter" app
 
 To allow you to focus primarily on the SODA APIs, you will be cloning a starter application. The application is wired up to provide a REST API to a front-end app, but it is not 100% complete. You will finish building out the app in the next module.
 
@@ -55,11 +53,11 @@ To allow you to focus primarily on the SODA APIs, you will be cloning a starter 
   ```
   git clone https://github.com/dmcghan/soda-app.git
   ```
-- Once the application has finished downloading, change directories into the **soda-app** directory to see the files included with the app. The README file ([sometimes easier to read online](https://github.com/dmcghan/soda-app)) provides an overview of how the application works. Note the absolute path to the application directory as you'll need that in Step 4.
+- Once the application has finished downloading, change directories into the **soda-app** directory to see the files included with the app. The README file ([sometimes easier to read online](https://github.com/dmcghan/soda-app)) provides an overview of how the application works. Note the absolute path to the application directory as you'll need that in part 4.
 
-### Step 3: Build Docker image
+### **Part 3**: Build Docker image
 
-In this step, you will build a docker image to host the application downloaded in the previous step.
+In this part, you will build a docker image to host the application downloaded in the previous part.
 
 - If not already done, open a terminal in the **soda-app** directory where the Dockerfile is located, then run the following command:
 
@@ -103,9 +101,9 @@ In this step, you will build a docker image to host the application downloaded i
   Successfully tagged soda-app-image:latest
   ```
 
-### Step 4: Run Docker image and test sample app
+### **Part 4**: Run Docker image and test sample app
 
-With the Docker image built, you're now ready to run a container based on the image. In this step, you'll start a docker container which maps some ports and directories on your host machine to the docker container. 
+With the Docker image built, you're now ready to run a container based on the image. In this part, you'll start a docker container which maps some ports and directories on your host machine to the docker container. 
 
 - Open the **database.js** file in the **config** directory. Replace the `[SERVICE_NAME]` token for the `connectString` property to the connect string that ends with `_tp` in the **tnsnames.ora** file in the client credentials directory. For example, if you database name is "TODODB" then the correct `connectString` value will be `TODODB_tp`.
 - Copy and paste the following terminal command into your favorite text editor: 

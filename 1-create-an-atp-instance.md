@@ -13,9 +13,11 @@ In this module, you will create an Autonomous Transaction Processing (ATP) insta
 
 - Oracle Public Cloud account credentials - You may use your own cloud account, a cloud account that you obtained through a trial, or a training account provided by an Oracle instructor.
 
-### Step 1: Sign in to the Oracle Cloud Infrastructure console
+## Parts
 
-In this step, you will sign into your Oracle Cloud account so that you can work with various services using a GUI.
+### **Part 1**: Sign in to the Oracle Cloud Infrastructure console
+
+In this part, you will sign into your Oracle Cloud account so that you can work with various services using a GUI.
 
 - Go to cloud.oracle.com, click **Sign In** to sign in with your Oracle Cloud account.
 
@@ -31,9 +33,9 @@ In this step, you will sign into your Oracle Cloud account so that you can work 
 
   Once you've successfully authenticated, you'll be redirected to the Oracle Cloud Infrastructure dashboard where you can start working with various cloud services.
 
-### Step 2: Create an ATP database
+### **Part 2**: Create an ATP database
 
-In this step, you will create an ATP database for the todo tracking application.
+In this part, you will create an ATP database for the todo tracking application.
 
 - Open the services menu by clicking the Navigation Drawer icon in the upper left-hand corner, then select Autonomous Transaction Processing.
 
