@@ -118,11 +118,11 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
                 $scope.selection = 'lab';
                 page.htmlContent = html;
                 setTimeout(function () {
-                    $("#labguide h2").next("h3").addClass("first-in-section");
-                    $("#labguide h3").nextUntil("#labguide h1, #labguide h2, #labguide h3").hide();
-                    $("#labguide h3").addClass('plus');
-                    $("#labguide h3").unbind('click', stepClickHandler);
-                    $("#labguide h3").click(stepClickHandler);
+                    $("#module-content h2").next("h3").addClass("first-in-section");
+                    $("#module-content h3").nextUntil("#module-content h1, #module-content h2, #module-content h3").hide();
+                    $("#module-content h3").addClass('plus');
+                    $("#module-content h3").unbind('click', stepClickHandler);
+                    $("#module-content h3").click(stepClickHandler);
                     window.scrollTo(0, 0);
                 }, 0);
               }, 
@@ -151,7 +151,7 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
             $scope.loadContent(module.filename);
 
             setTimeout(function () {
-              $("#labguide a").each(function () {
+              $("#module-content a").each(function () {
                 if (this.href.endsWith('.md')) {
                   $(this).on("click", function (event) {
                     event.preventDefault();
@@ -167,13 +167,13 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
 
         stepClickHandler = function (e) {
           var fadeOutStep = function (step) {
-            $(step).nextUntil("#labguide h1, #labguide h2, #labguide h3").fadeOut();
+            $(step).nextUntil("#module-content h1, #module-content h2, #module-content h3").fadeOut();
             $(step).addClass('plus');
             $(step).removeClass('minus');
           };
 
           var fadeInStep = function (step) {
-            $(step).nextUntil("#labguide h1, #labguide h2, #labguide h3").fadeIn();
+            $(step).nextUntil("#module-content h1, #module-content h2, #module-content h3").fadeIn();
             $(step).addClass('minus');
             $(step).removeClass('plus');
           };
@@ -182,14 +182,14 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
             if ($(this).hasClass('first-in-section') && $(this).hasClass('plus')) {
               fadeInStep($(this));
 
-              $(this).nextUntil("#labguide h1, #labguide h2", "h3").each(function (i, e) {
+              $(this).nextUntil("#module-content h1, #module-content h2", "h3").each(function (i, e) {
                 return fadeInStep(e);
               });
             }
             else if ($(this).hasClass('first-in-section') && $(this).hasClass('minus')) {
               fadeOutStep($(this));
 
-              $(this).nextUntil("#labguide h1, #labguide h2", "h3").each(function (i, e) {
+              $(this).nextUntil("#module-content h1, #module-content h2", "h3").each(function (i, e) {
                 return fadeOutStep(e);
               });
             }

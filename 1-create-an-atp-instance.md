@@ -19,15 +19,15 @@ In this step, you will sign into your Oracle Cloud account so that you can work 
 
 - Go to cloud.oracle.com, click **Sign In** to sign in with your Oracle Cloud account.
 
-  ![sign in](images/signin.png)
+  ![sign in](images/1/signin.png)
 
 - Enter your **Cloud Account Name** and click **Next**.
 
-  ![account name](images/account-name.png)
+  ![account name](images/1/account-name.png)
 
 - Enter your **User Name** and **Password**, then click **Sign In**.
 
-  ![user name and password](images/user-name-and-password.png)
+  ![user name and password](images/1/user-name-and-password.png)
 
   Once you've successfully authenticated, you'll be redirected to the Oracle Cloud Infrastructure dashboard where you can start working with various cloud services.
 
@@ -37,4 +37,4 @@ In this step, you will create an ATP database for the todo tracking application.
 
 - Open the services menu by clicking the Navigation Drawer icon in the upper left-hand corner, then select Autonomous Transaction Processing.
 
-  ![services menu atp](images/services-menu-atp.png)
+  ![services menu atp](images/1/services-menu-atp.png)
