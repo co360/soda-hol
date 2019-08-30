@@ -82,7 +82,7 @@ See [this documentation](https://docs.oracle.com/en/database/oracle/oracle-datab
     from todos_v
     ```
 
-### Step 3: Using JSON Data Guide to learn about JSON data
+### **Part 3**: Using JSON Data Guide to learn about JSON data
 
 Often times, JSON data comes from third party systems. In these instances, you may be unable to to control the format of the JSON and if the JSON documents are large, they may be fairly difficult to understand. A JSON data guide lets you discover information about the structure and content of JSON documents stored in Oracle Database.
 
@@ -113,7 +113,7 @@ Often times, JSON data comes from third party systems. In these instances, you m
    ``` 
 
    Notice that the JSON_DATAGUIDE function returns metadata in a flattened JSON structure with metadata describing the JSON data. The metadata includes the JSON path expression, data type, and maximum length of the data for each property found. This metadata becomes more useful as JSON becomes more complex.
-   
+
 3. Execute the following query in a SQL Worksheet:
 
    ```sql
