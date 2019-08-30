@@ -2,16 +2,12 @@
 
 As applications grow, the number of people that need to access and work with the data generated will grow as well. While the Node.js SODA APIs provide an easy way for app developers to start working with JSON data, not everyone will be comfortable working with Node.js or JSON.
 
-In this lab, you will learn to use some of the SQL functions that have been added to Oracle Database to facilitate working with JSON data.
+In this module, you will learn to use some of the SQL functions that have been added to Oracle Database to facilitate working with JSON data.
 
 ## Objectives
 
-- Use various options to query JSON data
-- Use JSON Data Guide to learn about the structure of JSON data
-
-## Required Artifacts
-
-- NA
+* Use various options to query JSON data
+* Use JSON Data Guide to learn about the structure of JSON data
 
 ## Parts
 
@@ -28,16 +24,18 @@ FROM j_purchaseorder po;
 
 See [this documentation](https://docs.oracle.com/en/database/oracle/oracle-database/18/adjsn/simple-dot-notation-access-to-json-data.html#GUID-7249417B-A337-4854-8040-192D5CEFD576) for more details on using dot-notation syntax with JSON data.
 
-  - In SQL Developer, open a connection to the database for the TODO_SODA user. 
-  - Using a SQL worksheet, write a query using dot notation syntax that returns data from the JSON_DOCUMENT column of the TODOS table in the following format. Note that you may need to create some more todos if you deleted them all in the last lab.
-    ![dot notation query results](images/4/dot-notation-query-results.png)
+1. In SQL Developer, open a connection to the database for the TODO_SODA user.
 
-    Do your best to write the code on your own, but [use this dot notation example](solutions/dot-notation.sql) if needed.
-  - Add a predicate to the previous query so that only "completed" todos are shown:
+2. Using a SQL worksheet, write a query using dot notation syntax that returns data from the JSON_DOCUMENT column of the TODOS table in the following format. Note that you may need to create some more todos if you deleted them all in the previous module.
+   ![dot notation query results](images/5/dot-notation-query-results.png)
 
-    ![dot notation query results 2](images/4/dot-notation-query-results-2.png)
+   Do your best to write the code on your own, but [use this dot notation example](solutions/dot-notation.sql) if needed.
 
-    Do your best to write the code on your own, but [use this dot notation example 2](solutions/dot-notation-2.sql) if needed.
+3. Add a predicate to the previous query so that only "completed" todos are shown:
+
+   ![dot notation query results 2](images/5/dot-notation-query-results-2.png)
+
+   Do your best to write the code on your own, but [use this dot notation example 2](solutions/dot-notation-2.sql) if needed.
 
 ### **Part 2**: Using JSON_TABLE to project JSON relationally
 
@@ -65,17 +63,20 @@ from theater,
 
 See [this documentation](https://docs.oracle.com/en/database/oracle/oracle-database/18/adjsn/function-JSON_TABLE.html#GUID-0172660F-CE29-4765-BF2C-C405BDE8369A) for more details on using JSON_TABLE.
 
-  - If not already done, open a connection in SQL Developer to the database for the TODO_SODA user.
-  - Use the example above as a guide to write a SQL query that uses JSON_TABLE to project data from the JSON_DOCUMENT column of the TODOS table in the following format.
+1. If not already done, open a connection in SQL Developer to the database for the TODO_SODA user.
 
-    ![json_table query results](images/4/json-table-query-results.png)
+2. Use the example above as a guide to write a SQL query that uses JSON_TABLE to project data from the JSON_DOCUMENT column of the TODOS table in the following format.
 
-    Do your best to write the code on your own, but [use this JSON_TABLE example](solutions/json-table.sql) if needed.
-  - Prepend the following code to the JSON_TABLE query and execute the statement. This will create a relational view over the JSON data.
-    ```sql
-    create or replace view todos_v as
-    ```
-  - Use the TODOS_V view to query the JSON data as though it were stored as relational data. For example, you could write something like:
+   ![json_table query results](images/5/json-table-query-results.png)
+
+   Do your best to write the code on your own, but [use this JSON_TABLE example](solutions/json-table.sql) if needed.
+
+3. Prepend the following code to the JSON_TABLE query and execute the statement. This will create a relational view over the JSON data.
+   ```sql
+   create or replace view todos_v as
+   ```
+
+4. Use the TODOS_V view to query the JSON data as though it were stored as relational data. For example, you could write something like:
     ```sql
     select *
     from todos_v
@@ -85,60 +86,61 @@ See [this documentation](https://docs.oracle.com/en/database/oracle/oracle-datab
 
 Often times, JSON data comes from third party systems. In these instances, you may be unable to to control the format of the JSON and if the JSON documents are large, they may be fairly difficult to understand. A JSON data guide lets you discover information about the structure and content of JSON documents stored in Oracle Database.
 
-  - If not already done, open a connection in SQL Developer to the database for the TODO_SODA user.
-  - Execute the following query in a SQL Worksheet:
+1. If not already done, open a connection in SQL Developer to the database for the TODO_SODA user.
 
-    ```sql
-      select json_dataguide(json_document)
-      from todos
-    ```
+2. Execute the following query in a SQL Worksheet:
 
-    If you copy the data out of SQL Developer and format it some, you should see something like the following:
+   ```sql
+     select json_dataguide(json_document)
+     from todos
+   ``` 
 
-    ```json
-    [
-      {
-        "o:path": "$.title",
-        "type": "string",
-        "o:length": 32
-      },
-      {
-        "o:path": "$.completed",
-        "type": "boolean",
-        "o:length": 8
-      }
-    ]
-    ```
+   If you copy the data out of SQL Developer and format it some, you should see something like the following:
 
-    Notice that the JSON_DATAGUIDE function returns metadata in a flattened JSON structure with metadata describing the JSON data. The metadata includes the JSON path expression, data type, and maximum length of the data for each property found. This metadata becomes more useful as JSON becomes more complex.
-  - Execute the following query in a SQL Worksheet:
+   ```json
+   [
+     {
+       "o:path": "$.title",
+       "type": "string",
+       "o:length": 32
+     },
+     {
+       "o:path": "$.completed",
+       "type": "boolean",
+       "o:length": 8
+     }
+   ]
+   ``` 
 
-    ```sql
-    select json_hierdataguide(json_document)
-    from todos
-    ```
+   Notice that the JSON_DATAGUIDE function returns metadata in a flattened JSON structure with metadata describing the JSON data. The metadata includes the JSON path expression, data type, and maximum length of the data for each property found. This metadata becomes more useful as JSON becomes more complex.
+   
+3. Execute the following query in a SQL Worksheet:
 
-    You should see output similar instucture (once formatted) to the following:
+   ```sql
+   select json_hierdataguide(json_document)
+   from todos
+   ``` 
+   
+   You should see output similar in structure (once formatted) to the following: 
+   ```json
+   {
+     "type": "object",
+     "properties": {
+       "title": {
+         "type": "string",
+         "o:length": 32,
+         "o:preferred_column_name": "title"
+       },
+       "completed": {
+         "type": "boolean",
+         "o:length": 8,
+         "o:preferred_column_name": "completed"
+       }
+     }
+   }
+   ```
 
-    ```json
-    {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string",
-          "o:length": 32,
-          "o:preferred_column_name": "title"
-        },
-        "completed": {
-          "type": "boolean",
-          "o:length": 8,
-          "o:preferred_column_name": "completed"
-        }
-      }
-    }
-    ```
-
-    As you can see, the JSON_HIERDATAGUIDE returns a nested JSON structure known as JSON schema. This variation of the metadata provided by JSON Data Guide can be useful for applications that work with JSON schema.
+   As you can see, the JSON_HIERDATAGUIDE returns a nested JSON structure which is known as JSON schema. This variation of the metadata provided by JSON Data Guide can be useful for applications that work with JSON schema.
 
 ## Summary
 
