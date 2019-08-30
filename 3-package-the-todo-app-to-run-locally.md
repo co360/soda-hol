@@ -1,7 +1,5 @@
 # Module 3: Package the Todo App to Run Locally
 
-## Introduction
-
 In this module, you will clone the public GitHub repo that will serve as the starting point for the Node.js app that you will be extending in the next module. To run the app, you will build a docker image that includes Node.js and various dependencies necessary for the application to run. This configuration will allow you to work on the application code from your host operating system while minimizing any cross platform issues.
 
 ## Objectives
@@ -138,6 +136,6 @@ With the Docker image built, you're now ready to run a container based on the im
 
   ![todo app](images/2/todo-app.png)
 
-### Summary
+## Summary
 
-At this point, you have the starter application running in a docker container. If you test the app by adding some todos, you'll find that the todos are not saved. This is because the CRUD functionality for the REST API hasn't been added yet. You'll add that logic using the SODA APIs in the next module.
+This completes Module 3. At this point, you have the starter application running in a docker container. If you test the app by adding some todos, you'll find that the todos are not saved. This is because the CRUD functionality for the REST API hasn't been added yet. You'll add that logic using the SODA APIs in the next module. [Click here to navigate to Module 4](4-use-soda-apis-for-crud-operations.md).

@@ -1,7 +1,5 @@
 # Module 4: Use SODA APIs for CRUD Operations
 
-## Introduction
-
 In this module, you will extend the Node.js starter application by adding the appropriate SODA API calls and related code. By the end of the module, all of the basic CRUD functionality to work with todos in the todo app will be complete.
 
 Note that the Docker container created in the previous module uses a program to monitor changes you make to the application code on your host operating system. When you update the code and save your changes the app should restart automatically. If the code has an error that prevents the app from starting correctly, then the container may eventually stop running. If this happens, you can restart the container with the following command:
@@ -87,6 +85,6 @@ All that's left to complete the CRUD functionality is to add the ability to dele
   - If a `key` value is _not_ passed to the function, then all todos that have a status value of `completed` should be removed from the collection. This will require a simple [Query-by-Example (QBE) filter](https://oracle.github.io/node-oracledb/doc/api.html#-264-soda-query-by-example-searches-for-json-documents).
 - To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. Try deleting individual todos and then all of the todos that are marked as complete. Don't forget to refresh the page to ensure that the changes have been made to the database. Do your best to write the code on your own, but [use this del example](solutions/del.js) if needed.
 
-### Summary
+## Summary
 
-At this point you have a working todo tracking application! You create a collection to store todo documents and then updated the API to support basic CRUD operations, all without writing a single line of SQL! Of course, SQL is one of the most powerful and popular programming languages of all time. In the next lab, you'll see how some extensions to the SQL language can help when working with JSON data.
+This completes Module 4. You now have a working todo tracking application! You created a collection to store todo documents and then updated the API to support basic CRUD operations, all without writing a single line of SQL! Of course, SQL is one of the most powerful and popular programming languages of all time. In the next lab, you'll see how some new extensions to the SQL language can help when working with JSON data. [Click here to navigate to Module 5](5-use-sql-features-for-json.md).

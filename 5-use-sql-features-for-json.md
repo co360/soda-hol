@@ -1,7 +1,5 @@
 # Module 5: Use SQL Features for JSON
 
-## Introduction
-
 As applications grow, the number of people that need to access and work with the data generated will grow as well. While the Node.js SODA APIs provide an easy way for app developers to start working with JSON data, not everyone will be comfortable working with Node.js or JSON.
 
 In this lab, you will learn to use some of the SQL functions that have been added to Oracle Database to facilitate working with JSON data.
@@ -144,7 +142,7 @@ Often times, JSON data comes from third party systems. In these instances, you m
 
 ## Summary
 
-You've completed this hands-on lab! At this point, you should have a basic understanding of the ATP, how to connect to ATP from SQL Developer Web and Node.js, how to use the SODA APIs for Node.js, and how to use some of the new JSON features of the Oracle Database.
+You have completed the lab, well done! At this point, you should have a basic understanding of how ATP works, how to connect to ATP from SQL Developer Web and Node.js, how to use the SODA APIs for Node.js, and how to use some of the new JSON features of the Oracle Database.
 
 Use these links to get more information and continue learning:
 

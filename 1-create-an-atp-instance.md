@@ -1,7 +1,5 @@
 # Module 1: Create an ATP Instance
 
-## Introduction
-
 In this module, you will create an Autonomous Transaction Processing (ATP) instance. The database will be used to store the data related to the todo tracking application.
 
 ## Objectives
@@ -40,3 +38,7 @@ In this part, you will create an ATP database for the todo tracking application.
 - Open the services menu by clicking the Navigation Drawer icon in the upper left-hand corner, then select Autonomous Transaction Processing.
 
   ![services menu atp](images/1/services-menu-atp.png)
+
+## Summary
+
+This completes Module 1. At this point, you know how to log into your cloud account and create an ATP instance. [Click here to navigate to Module 2](2-create-a-database-user-with-soda-privileges.md).
