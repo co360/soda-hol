@@ -41,7 +41,7 @@ Now that you are connected to the database as the ADMIN user, you will use that 
 
    ```sql
    create user todo_soda 
-   identified by "SecretP@ssw0rd"
+   identified by "SecretPassw0rd"
    default tablespace data
    temporary tablespace temp;
  

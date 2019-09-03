@@ -78,7 +78,7 @@ With the todos collection in place, you can start to build out the CRUD function
 
 ### **Part 3**: Fetch documents from the collection
 
-Now that todos are being stored in the collection, the next thing to add is the ability to fetch them back out so they can be displayed in the todo app. As you saw in the previous part, document keys in SODA are stored as separate metadata - not as part of the document content. This is something you'll need to consider when building apps as clients often need the keys to work with REST APIs.
+Now that todos are being stored in the collection, the next thing to add is the ability to fetch them back out so they can be displayed in the todo app. As you saw in the previous part, document keys in SODA are stored as separate metadata - not as part of the document content. This is something you'll need to consider when building apps as clients often need the keys to work with REST APIs. [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#-293-creating-and-accessing-soda-documents) for details on adding documents to collections.
 
 1. Return to the **todos.js** file in the **db_apis** directory.
 
@@ -86,7 +86,7 @@ Now that todos are being stored in the collection, the next thing to add is the 
    * Fetch all of the todo documents from the todos collection.
    * Iterate over the the documents returned and use them to populate the `todos` array which is already declared and returned at the end of the function. Each todo element in the array should have an `id` property with a value that maps to the key of the document.
 
-   Do your best to write the code on your own, but [use this find example](solutions/find.js) if needed.
+   Do your best to write the code on your own, but [use this find example](solutions/4/find.js) if needed.
 
 3. To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. If you see the list of todos populate with the values you previously saved to the collection, then you are successfully fetching the todo documents.
 
@@ -94,7 +94,9 @@ Now that todos are being stored in the collection, the next thing to add is the 
 
 ### **Part 4**: Update documents in the collection
 
-So far, you've implemented the "C" (create) and the "R" (read) of CRUD operations. In this part, you'll add the "U" - the ability to update existing todo documents. The app lets users change the name and status of todos and then issues an HTTP PUT request on the `/todos/:id` API endpoint, passing along the updated todo.
+So far, you've implemented the "C" (create) and the "R" (read) of CRUD operations. In this part, you'll add the "U" - the ability to update existing todo documents. However, the SODA term is replace, not update, since the entire document is replaced. 
+
+The app lets users change the name and status of todos and then issues an HTTP PUT request on the `/todos/:id` API endpoint, passing along the updated todo. [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#-293-creating-and-accessing-soda-documents) for details on replacing documents in collections.
 
 1. Return to the **todos.js** file in the **db_apis** directory.
 
@@ -102,7 +104,7 @@ So far, you've implemented the "C" (create) and the "R" (read) of CRUD operation
    * Use the appropriate SODA API to update the todo in the collection. Use the method that returns the metadata related to the document.
    * Use the metadata returned from the update to determine if the update was successful. If it was then return true, otherwise (perhaps the key value passed in didn't exist) return false.
 
-   Do your best to write the code on your own, but [use this update example](solutions/update.js) if needed.
+   Do your best to write the code on your own, but [use this update example](solutions/4/update.js) if needed.
 
 3. To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. Either mark the todo as complete or double-click on the name of an existing todo and change it. Then refresh the browser. If you see your changes have persisted across refreshes then the update functionality is working.
 
@@ -114,9 +116,11 @@ All that's left to complete the CRUD functionality is to add the ability to dele
 
 2. Locate the `del` function and replace the two comments related to adding SODA code with the appropriate SODA API calls:
    * If a `key` value is passed to the function, then that single document should be removed from the collection.
-   * If a `key` value is _not_ passed to the function, then all todos that have a status value of `completed` should be removed from the collection. This will require a simple [Query-by-Example (QBE) filter](https://oracle.github.io/node-oracledb/doc/api.html#-264-soda-query-by-example-searches-for-json-documents).
+   * If a `key` value is _not_ passed to the function, then all todos that have a status value of `completed` should be removed from the collection. This will require a simple [Query-by-Example (QBE) filter](https://oracle.github.io/node-oracledb/doc/api.html#sodaqbesearches).
 
-3. To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. Try deleting individual todos and then all of the todos that are marked as complete. Don't forget to refresh the page to ensure that the changes have been made to the database. Do your best to write the code on your own, but [use this del example](solutions/del.js) if needed.
+   Do your best to write the code on your own, but [use this del example](solutions/4/del.js) if needed.
+
+3. To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. Try deleting individual todos and then all of the todos that are marked as complete. Don't forget to refresh the page to ensure that the changes have been made to the database. 
 
 ## Summary
 
