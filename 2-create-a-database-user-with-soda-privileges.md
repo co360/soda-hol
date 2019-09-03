@@ -1,32 +1,31 @@
 # Module 2: Create a Database User with SODA Privileges
 
-When you create an ATP instance, you are prompted for a password for the ADMIN user. The ADMIN user account should be used for administrative purposes only, not for typical application development. In this module, you will use the ADMIN account to create a new user for the todo tracking app.
+When you create an ATP instance, you are prompted for an ADMIN user password. The ADMIN user account should be used for administrative purposes only, not for typical application development. In this module, you will use the ADMIN account to create a new user for the todo tracking app.
 
 ## Objectives
 
-* Sign-in to the Oracle Public Cloud
 * Connect to an ATP instance from SQL Developer Web
 * Create a database user with SODA privileges
 
 ## Parts
 
-### **Part 2**: Connect to ATP from SQL Developer Web
+### **Part 1**: Connect to ATP from SQL Developer Web
 
-The easiest way to connect to an ATP instance is using SQL Developer Web. In this part, you will learn how to access SQL Developer Web and log in with the ADMIN account.
+As its name implies, SQL Developer Web is a web based version of SQL Developer. It provides a subset of the features available in the desktop product and is the easiest way to connect to and work with an ATP instance programatically. In this part, you will learn how to access SQL Developer Web and log in with the ADMIN account.
 
-1. Navigate to the Autonomous Transaction Processing page and click the name of the ATP instance you would like to connect to. This will take you to the Database Details page for that instance.
+1. If not already on the Autonomous Database Details page, navigate there by going to the Autonomous Transaction Processing service and then click the **TODODB** instance name. 
 
    ![select atp instance](images/2/select-atp-instance.png)
 
-2. Click the **Service Console** button. This will open the ATP Service Console in a new window.
+2. Click the **Service Console** button. This will open the ATP Service Console in a new browser window.
 
    ![click service console](images/2/click-service-console.png)
 
-3. Click the **Development** option in the menu on the left, then click the **SQL Developer Web** option. This will open SQL Developer Web in a new window.
+3. Click the **Development** menu option on the left, then click **SQL Developer Web**. This will open SQL Developer Web in a new browser window.
 
-   ![click service console](images/2/click-development-sql-dev-web.png)
+   ![click development then sql dev web](images/2/click-development-sql-dev-web.png)
 
-4. Log into SQL Developer Web using **admin** as the user name (case insensitive) and the admin password (case sensitive) that was provided when the ATP instance was created, then click **Sign in**.
+4. Log into SQL Developer Web using **admin** as the Username (case insensitive) and **`SecretPassw0rd`** for the Password, then click **Sign in**.
 
    ![click service console](images/2/sql-dev-web-auth.png)
 
@@ -34,11 +33,11 @@ The easiest way to connect to an ATP instance is using SQL Developer Web. In thi
 
    ![click service console](images/2/sql-dev-web.png)
 
-### **Part 4**: Create a database user with SODA privileges
+### **Part 2**: Create a database user with SODA privileges
 
 Now that you are connected to the database as the ADMIN user, you will use that account to create a new user/schema that will be used for the todo app. 
 
-1. Enter the following code in the **[Worksheet]**:
+1. Copy and paste the following code into the **[Worksheet]**:
 
    ```sql
    create user todo_soda 
@@ -64,16 +63,16 @@ Now that you are connected to the database as the ADMIN user, you will use that 
 
    ![run script](images/2/script-output.png)
 
-3. Finally, execute the following script as before. This will allow the **TODO_SODA** user to connect to SQL Developer Web as well:
+3. Finally, execute the following script as before. This will allow the **TODO_SODA** user to connect to SQL Developer Web as well (you will do this in Module 5):
 
    ```sql
    begin
  
      ords_admin.enable_schema(
        p_enabled => true,
-       p_schema => 'TODO_SODA',
+       p_schema => 'TODO_SODA', -- schema to grant sql dev web access
        p_url_mapping_type => 'BASE_PATH',
-       p_url_mapping_pattern => 'TODO_SODA',
+       p_url_mapping_pattern => 'todo_soda', -- alias used in the URL for access
        p_auto_rest_auth => true
      );
  
@@ -88,4 +87,4 @@ Now that you are connected to the database as the ADMIN user, you will use that 
 
 ## Summary
 
-This completes Module 2. You now know how to connect to your ATP instance from SQL Developer Web as the ADMIN user and create new application users/schemas. [Click here to navigate to Module 3](3-package-the-todo-app-to-run-locally.md).
+This completes Module 2. You now know how to connect to your ATP instance as the ADMIN user with SQL Developer Web and use that account to create new application users/schemas. Normally, you would need to create tables in the new schema using a tool like SQL Developer Web to store the todo data. However, with SODA this isn't required. In Module 4, you'll see how this can be done from the application instead and without any SQL code. But before that, you'll need to get the mid-tier app up and running. [Click here to navigate to Module 3](3-package-the-todo-app-to-run-locally.md).

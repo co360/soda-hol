@@ -23,39 +23,62 @@ With node-oracledb (the Oracle Database driver for Node.js), SODA APIs are expos
 
 1. Open the **database.js** file in the **util** directory.
 
-2. Locate the `initialize` function and replace the comment related to adding SODA code with code to create a collection named "todos". [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#-262-creating-soda-collections) for details on creating collections. 
+2. Locate the `initialize` function and replace the comment related to adding SODA code with code to create a collection named "todos". [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#creatingsodacollections) for details on creating collections. When you save your changes, the app will automatically restart and run the `initialize` function.
 
-3. To validate your code, open SQL Developer Web and log in as the **todo_soda** user. See Module 2 to get the password for the **todo_soda** user (in the SQL script to create the user). Once logged in, open the tables node in the database objects tree. If you see a **TODOS** table then you know you've successfully created the "todos" collection. Do your best to write the code on your own, but [use this initialize example](solutions/initialize.js) if needed.
+   Do your best to write the code on your own, but [use this initialize example](solutions/4/initialize.js) if needed.
 
-   ![todos table](images/4/todos-table.png)
+3. To validate your code, you can open SQL Developer Web and log in as the **todo_soda** user. Start by navigating to the Autonomous Database Details page for the **TODODB** instance, then click the **Service Console** button.
 
-   As you can see, SODA collections are backed by traditional tables in Oracle. In the next module, you'll see how you can use those tables along with some new SQL functions to work with the JSON data in different ways.
+   ![click service console](images/4/click-service-console.png)
+
+3. Click the **Development** menu option on the left, then click **SQL Developer Web**.
+
+   ![click development then sql dev web](images/4/click-development-sql-dev-web.png)
+
+4. Change the URL of the login page by replacing **admin** with **todo_soda** (the value passed to the p_url_mapping_pattern parameter in Module 2, Part 2). Then press enter to go to the new URL.
+
+   ![change url](images/4/change-url.png)
+
+5. Set Username to **todo_soda** and Password to **`SecretPassw0rd`**, then click **Sign in**.
+
+   ![log in as todo soda](images/4/log-in-as-todo-soda.png)
+
+   Once authenticated, you'll see a table named **TODOS**. This table was created when you created the todos collection.
+   
+   ![log in as todo soda](images/4/todos-table.png)
+   
+   As you can see, SODA collections are backed by traditional tables in Oracle Database. In Module 5, you'll see how you can use those tables along with some new SQL functions to work with the JSON data in different ways.
 
 ### **Part 2**: Add documents to the collection
 
-With the todos collection in place, you can start to build out the CRUD functionality in the API related to todos. In this part, you will add the ability to add todo documents to the todos collection. [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#-263-creating-and-accessing-soda-documents) for details on adding documents to collections.
+With the todos collection in place, you can start to build out the CRUD functionality in the API related to todos. In this part, you will add the ability to add todo documents to the todos collection. [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#-293-creating-and-accessing-soda-documents) for details on adding documents to collections.
 
 1. Open the **todos.js** file in the **db_apis** directory.
 
 2. Locate the `create` function and replace the comment related to adding SODA code with code that does the following:
-   * Add the `todo` object to the todos collection. Use the method that returns the metadata related to the document.
+   * Add the `todo` object passed in to the todos collection. Use the method that returns the metadata related to the document.
    * Return the key value associated with the document that was added to the collection.
 
-3. To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000). Enter some text where it says "What needs to be done?", then press enter. To be sure the todo was saved to the database, return to the TODOS table in SQL Developer and ensure you have a new row in the table. Do your best to write the code on your own, but [use this create example](solutions/create.js) if needed.
+   Do your best to write the code on your own, but [use this create example](solutions/4/create.js) if needed.
 
-   ![todo row in todos table](images/4/todo-row-in-todos-table.png)
+3. To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000). Enter some text where it says "What needs to be done?", then press enter. To be sure the todo was saved to the database, return to the TODOS table in SQL Developer Web and ensure you have a new row in the table by running the following query.
 
-   If you scroll to the right, you'll see that the document is stored as a BLOB by default. To see the content with SQL Developer, double-click in the BLOB column for the row and a "pencil" icon appear. Click that icon to open an Edit dialog and then check the **Text** checkbox.
+   ```
+   select *
+   from todos
+   ```
 
-   ![edit blob modal](images/4/edit-blob-modal.png)
+   You should see the new row under the Query Results tab at the bottom.
 
-   Once the box is checked, you should see the content.
+   ![row in todos table](images/4/row-in-todos-table.png)
 
-   ![blob content](images/4/blob-content.png)
+   If you scroll to the right of the results, you'll see that the json_document column is defined as a BLOB type by default. To see the content with SQL Developer Web, click the "pencil" icon in the field and select the Saved Text tab.
+
+   ![edit blob modal](images/4/blob-content.png)
 
 ### **Part 3**: Fetch documents from the collection
 
-Now that todos are being stored in the collection, the next thing to add is the ability to fetch them back out so they can be displayed in the todo app. As you saw in the previous part, document keys in SODA are stored as metadata - not as part of the document content. This is something you'll need to consider when building apps as clients often need the keys to work with REST APIs.
+Now that todos are being stored in the collection, the next thing to add is the ability to fetch them back out so they can be displayed in the todo app. As you saw in the previous part, document keys in SODA are stored as separate metadata - not as part of the document content. This is something you'll need to consider when building apps as clients often need the keys to work with REST APIs.
 
 1. Return to the **todos.js** file in the **db_apis** directory.
 
@@ -63,9 +86,11 @@ Now that todos are being stored in the collection, the next thing to add is the 
    * Fetch all of the todo documents from the todos collection.
    * Iterate over the the documents returned and use them to populate the `todos` array which is already declared and returned at the end of the function. Each todo element in the array should have an `id` property with a value that maps to the key of the document.
 
-3. To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. If you see the list of todos populate with the values you previously saved to the collection, then you are successfully fetching the todo documents. Do your best to write the code on your own, but [use this find example](solutions/find.js) if needed.
+   Do your best to write the code on your own, but [use this find example](solutions/find.js) if needed.
 
-   ![fetched todo](images/3/fetched-todo.png)
+3. To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. If you see the list of todos populate with the values you previously saved to the collection, then you are successfully fetching the todo documents.
+
+   ![fetched todo](images/4/fetched-todo.png)
 
 ### **Part 4**: Update documents in the collection
 
@@ -77,7 +102,9 @@ So far, you've implemented the "C" (create) and the "R" (read) of CRUD operation
    * Use the appropriate SODA API to update the todo in the collection. Use the method that returns the metadata related to the document.
    * Use the metadata returned from the update to determine if the update was successful. If it was then return true, otherwise (perhaps the key value passed in didn't exist) return false.
 
-3. To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. Either mark the todo as complete or double-click on the name of an existing todo and change it. Then refresh the browser. If you see your changes have persisted across refreshes then the update functionality is working. Do your best to write the code on your own, but [use this update example](solutions/update.js) if needed.
+   Do your best to write the code on your own, but [use this update example](solutions/update.js) if needed.
+
+3. To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. Either mark the todo as complete or double-click on the name of an existing todo and change it. Then refresh the browser. If you see your changes have persisted across refreshes then the update functionality is working.
 
 ### **Part 5**: Remove documents from the collection
 
@@ -88,7 +115,7 @@ All that's left to complete the CRUD functionality is to add the ability to dele
 2. Locate the `del` function and replace the two comments related to adding SODA code with the appropriate SODA API calls:
    * If a `key` value is passed to the function, then that single document should be removed from the collection.
    * If a `key` value is _not_ passed to the function, then all todos that have a status value of `completed` should be removed from the collection. This will require a simple [Query-by-Example (QBE) filter](https://oracle.github.io/node-oracledb/doc/api.html#-264-soda-query-by-example-searches-for-json-documents).
-   
+
 3. To validate your code, open a browser and navigate to [localhost:3000](http://localhost:3000) or just refresh the page if you're already there. Try deleting individual todos and then all of the todos that are marked as complete. Don't forget to refresh the page to ensure that the changes have been made to the database. Do your best to write the code on your own, but [use this del example](solutions/del.js) if needed.
 
 ## Summary
