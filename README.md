@@ -2,7 +2,7 @@
 
 This hands-on lab will introduce you to the Simple Oracle Document Access (SODA) APIs for Node.js and Oracle Autonomous Transaction Processing (ATP) database service. SODA is a set of NoSQL-style APIs that let you manager collections of documents (in particular JSON) in Oracle Database without needing to know Structured Query Language (SQL). ATP delivers a self-driving, self-securing, self-repairing database service that can instantly scale to meet demands of mission critical transaction processing and mixed workload applications. 
 
-You will work to complete a todo tracking application. The front-end app  is based on the [TodoMVC](http://todomvc.com/) front-end. The mid-tier will be a Node.js based REST API that uses the SODA APIs included with node-oracledb (the database driver for Oracle Database) to work with data. Of course, ATP will be used the application's persistence layer.
+You will work to complete a three-tier todo tracking application. The front-end app is based on [TodoMVC](http://todomvc.com/) (a simple demo app for learning front-end frameworks). The mid-tier will be a Node.js based REST API that uses the SODA APIs included with node-oracledb (the database driver for Oracle Database) to work with data. For the application's persistence layer, you will use an instance of the ATP service.
 
 ## Lab Objectives
 
