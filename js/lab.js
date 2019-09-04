@@ -136,33 +136,33 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
         }
 
         $scope.loadModule = function (module) {
-            $scope.currentFilename = module.filename;
+          $scope.currentFilename = module.filename;
 
-            if ('URLSearchParams' in window) {
-              var searchParams = new URLSearchParams(window.location.search);
+          if ('URLSearchParams' in window) {
+            var searchParams = new URLSearchParams(window.location.search);
 
-              searchParams.set("page", module.filename);
+            searchParams.set("page", module.filename);
 
-              var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
+            var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
 
-              history.replaceState(null, '', newRelativePathQuery);
-            }
+            history.replaceState(null, '', newRelativePathQuery);
+          }
 
-            $scope.loadContent(module.filename);
+          $scope.loadContent(module.filename);
 
-            setTimeout(function () {
-              $("#module-content a").each(function () {
-                if (this.href.endsWith('.md')) {
-                  $(this).on("click", function (event) {
-                    event.preventDefault();
-                    console.log('clicked on: ' + this.getAttribute('href'));
-                    $scope.loadModule({
-                      filename: this.getAttribute('href')
-                    });
+          setTimeout(function () {
+            $("#module-content a").each(function () {
+              if (this.href.endsWith('.md')) {
+                $(this).on("click", function (event) {
+                  event.preventDefault();
+                  console.log('clicked on: ' + this.getAttribute('href'));
+                  $scope.loadModule({
+                    filename: this.getAttribute('href')
                   });
-                }
-              })
-            }, 500);
+                });
+              }
+            })
+          }, 500);
         }
 
         stepClickHandler = function (e) {

@@ -13,9 +13,9 @@ In this module, you will learn to use some of the SQL functions that have been a
 
 ### **Part 1**: Using dot-notation syntax to query JSON data
 
-In this part, you will use dot-notation syntax to query the todo documents. The dot-notation syntax is essentially a table alias, followed by a JSON column name, followed by one or more field names — all separated by periods.
+In this part, you will use dot-notation syntax to query the todo documents. Dot-notation syntax is essentially a table alias, followed by a JSON column name, followed by one or more field names — all separated by periods.
 
-Here's an example query that uses dot-notation syntax to get the Phone property of the ShippingInstructions property of the JSON stored in the PO_DOCUMENT column of the J_PURCHASEORDER table.
+Here's an example query that uses dot-notation syntax to get the Phone property of the ShippingInstructions property of the JSON stored in the PO_DOCUMENT column of the J_PURCHASEORDER table. Note that the table alias is required with dot-notation syntax.
 
 ```sql
 SELECT po.po_document.ShippingInstructions.Phone 
@@ -24,26 +24,26 @@ FROM j_purchaseorder po;
 
 See [this documentation](https://docs.oracle.com/en/database/oracle/oracle-database/18/adjsn/simple-dot-notation-access-to-json-data.html#GUID-7249417B-A337-4854-8040-192D5CEFD576) for more details on using dot-notation syntax with JSON data.
 
-1. In SQL Developer, open a connection to the database for the TODO_SODA user.
+1. If not already done, connect as the TODO_SODA user in SQL Developer Web.
 
-2. Using a SQL worksheet, write a query using dot notation syntax that returns data from the JSON_DOCUMENT column of the TODOS table in the following format. Note that you may need to create some more todos if you deleted them all in the previous module.
+2. Use the **[Worksheet]** to write a query using dot notation syntax that returns data from the JSON_DOCUMENT column of the TODOS table in the following format. Note that you may need to create some more todos if you deleted them all in the previous module.
    ![dot notation query results](images/5/dot-notation-query-results.png)
 
-   Do your best to write the code on your own, but [use this dot notation example](solutions/dot-notation.sql) if needed.
+   Do your best to write the code on your own, but [use this dot notation example](solutions/5/dot-notation.sql) if needed.
 
-3. Add a predicate to the previous query so that only "completed" todos are shown:
+3. Add a predicate to the previous query so that only "completed" todos are shown. You may need to complete one or more todos first.
 
    ![dot notation query results 2](images/5/dot-notation-query-results-2.png)
 
-   Do your best to write the code on your own, but [use this dot notation example 2](solutions/dot-notation-2.sql) if needed.
+   Do your best to write the code on your own, but [use this dot notation example 2](solutions/5/dot-notation-2.sql) if needed.
 
 ### **Part 2**: Using JSON_TABLE to project JSON relationally
 
-In addition to the dot notation syntax, there are several SQL functions that can be used to query JSON data, including JSON_EXISTS, JSON_VALUE, JSON_QUERY, and JSON_TABLE. JSON_TABLE, which projects JSON data as SQL columns, stands out for performance reasons (it only parses the document column once per row). In this part, you'll use JSON_TABLE to create a relational view over JSON data to simplify queries against it.
+In addition to the dot-notation syntax, there are several SQL functions that can be used to query JSON data, including JSON_EXISTS, JSON_VALUE, JSON_QUERY, and JSON_TABLE. JSON_TABLE, which projects JSON data as SQL columns, stands out for performance reasons (it only parses the document column once per row). In this part, you'll use JSON_TABLE to create a relational view over JSON data to simplify queries against it.
 
-You use JSON_TABLE in a SQL FROM clause. It is a row source, meaning it generates a row of virtual-table data for each JSON value selected by a row path expression (row pattern). The columns of each generated row are defined by the column path expressions of the COLUMNS clause. 
+JSON_TABLE is used in the SQL FROM clause of a SQL query. It is a row source, meaning it generates a row of virtual-table data for each JSON value selected by a row path expression (row pattern). The columns of each generated row are defined by the column path expressions of the COLUMNS clause. 
 
-Here's an example query that uses JSON_TABLE to project data from the THEATER table, which stores JSON data in the JSON_DOCUMENT column, in a tabular form. Note that an Oracle join is used to join the THEATER table to the JSON_TABLE function, which is passed two parameters. The first parameter is the JSON_DOCUMENT column and the second is a JSON path expression followed by a columns clause which defines how the data should be projected. With JSON path expressions, the dollar sign ($) represents the root of the document.
+Here's an example query that uses JSON_TABLE to project data from the THEATER table, which stores JSON data in the JSON_DOCUMENT column. Note that an Oracle join is used to join the THEATER table to the JSON_TABLE function, which is passed two parameters. The first parameter is the JSON_DOCUMENT column and the second is a JSON path expression followed by a columns clause which defines how the data should be projected. With JSON path expressions, the dollar sign ($) represents the root of the JSON document.
 
 ```sql
 select theater_id, name, street, city, zip
@@ -63,39 +63,41 @@ from theater,
 
 See [this documentation](https://docs.oracle.com/en/database/oracle/oracle-database/18/adjsn/function-JSON_TABLE.html#GUID-0172660F-CE29-4765-BF2C-C405BDE8369A) for more details on using JSON_TABLE.
 
-1. If not already done, open a connection in SQL Developer to the database for the TODO_SODA user.
-
-2. Use the example above as a guide to write a SQL query that uses JSON_TABLE to project data from the JSON_DOCUMENT column of the TODOS table in the following format.
+1. Use the example above as a guide to write a SQL query that uses JSON_TABLE to project data from the JSON_DOCUMENT column of the TODOS table in the following format.
 
    ![json_table query results](images/5/json-table-query-results.png)
 
-   Do your best to write the code on your own, but [use this JSON_TABLE example](solutions/json-table.sql) if needed.
+   Do your best to write the code on your own, but [use this JSON_TABLE example](solutions/5/json-table.sql) if needed.
 
-3. Prepend the following code to the JSON_TABLE query and execute the statement. This will create a relational view over the JSON data.
+2. Prepend the following code to the JSON_TABLE query and execute the statement. This will create a relational view over the JSON data.
    ```sql
    create or replace view todos_v as
    ```
 
-4. Use the TODOS_V view to query the JSON data as though it were stored as relational data. For example, you could write something like:
+   You should see the following output under the Script Output tab.
+
+   ![json_table query results](images/5/create-view-output.png)
+
+3. Use the TODOS_V view to query the JSON data as though it were stored as relational data. For example, you could write something like:
     ```sql
     select *
     from todos_v
     ```
 
+    As you can see, once a relational view is created over JSON data, it can be queried by folks that know SQL without any knowledge of JSON.
+
 ### **Part 3**: Using JSON Data Guide to learn about JSON data
 
-Often times, JSON data comes from third party systems. In these instances, you may be unable to to control the format of the JSON and if the JSON documents are large, they may be fairly difficult to understand. A JSON data guide lets you discover information about the structure and content of JSON documents stored in Oracle Database.
+Often times, JSON data comes from third party systems. In these instances, you may be unable to to control the format of the JSON and if the JSON documents are large, they may be fairly difficult to understand. A JSON Data Guide lets you discover information about the structure and content of JSON documents stored in Oracle Database.
 
-1. If not already done, open a connection in SQL Developer to the database for the TODO_SODA user.
-
-2. Execute the following query in a SQL Worksheet:
+1. Execute the following query in the **[Worksheet]**:
 
    ```sql
-     select json_dataguide(json_document)
-     from todos
+   select json_dataguide(json_document)
+   from todos
    ``` 
 
-   If you copy the data out of SQL Developer and format it some, you should see something like the following:
+   If you copy the data out of SQL Developer Web and format it some, you should see something like the following:
 
    ```json
    [
@@ -114,7 +116,7 @@ Often times, JSON data comes from third party systems. In these instances, you m
 
    Notice that the JSON_DATAGUIDE function returns metadata in a flattened JSON structure with metadata describing the JSON data. The metadata includes the JSON path expression, data type, and maximum length of the data for each property found. This metadata becomes more useful as JSON becomes more complex.
 
-3. Execute the following query in a SQL Worksheet:
+2. Execute the following query in the **[Worksheet]**:
 
    ```sql
    select json_hierdataguide(json_document)
