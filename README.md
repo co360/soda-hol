@@ -35,7 +35,7 @@ You will work to complete a three-tier todo tracking application. The front-end 
 
 ### **Part 2**: Navigate to Module 1
 
-1. [Click here](1-create-an-atp-database.md) to navigate to Module 1. Alternatively, you can click the navigation menu icon in the upper-left corner of the browser window to see a list of modules in the lab.
+1. [Click here](1-create-an-atp-instance.md) to navigate to Module 1. Alternatively, you can click the navigation menu icon in the upper-left corner of the browser window to see a list of modules in the lab.
 
 	 ![](images/0/lab-intro.png)
 
