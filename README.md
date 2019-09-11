@@ -25,20 +25,20 @@ You will work to complete a three-tier todo tracking application. The front-end 
 
 ### **Part 1**: Acquire an Oracle Cloud trial account
 
-1. If you already have an Oracle Cloud trial account (or regular account), you may skip to the next part.
+1.  If you already have an Oracle Cloud trial account (or regular account), you may skip to the next part.
 
-2. Please <a href="https://myservices.us.oraclecloud.com/mycloud/signup?language=en&sourceType=:ow:lp:mt::RC_NAMK190904P00063:SodaNodeJson&intcmp=:ow:lp:mt::RC_NAMK190904P00063:SodaNodeJson" target="_trial_">click this link to create your free account</a>. When you complete the registration process you'll receive an account with a $300 credit that will enable you to complete the lab for free. You can then use any remaining credit to continue to explore the Oracle Cloud.
+2.  Please <a href="https://myservices.us.oraclecloud.com/mycloud/signup?language=en&sourceType=:ow:lp:mt::RC_NAMK190904P00063:SodaNodeJson&intcmp=:ow:lp:mt::RC_NAMK190904P00063:SodaNodeJson" target="_trial_">click this link to create your free account</a>. When you complete the registration process you'll receive an account with a $300 credit that will enable you to complete the lab for free. You can then use any remaining credit to continue to explore the Oracle Cloud.
 
-3. Soon after requesting your trial you will receive the following email. Once you receive this email you can proceed to Part 2.
+3.  Soon after requesting your trial you will receive the following email. Once you receive this email you can proceed to Part 2.
 
-   ![](images/0/get-started-email.png)
+    ![](images/0/get-started-email.png)
 
 ### **Part 2**: Navigate to Module 1
 
-1. [Click here](1-create-an-atp-instance.md) to navigate to Module 1. Alternatively, you can click the navigation menu icon in the upper-left corner of the browser window to see a list of modules in the lab.
+1.  [Click here](1-create-an-atp-instance.md) to navigate to Module 1. Alternatively, you can click the navigation menu icon in the upper-left corner of the browser window to see a list of modules in the lab.
 
-	 ![](images/0/lab-intro.png)
+    ![](images/0/lab-intro.png)
 
 2. Click **Module 1: Create an ATP instance**.
   
-   ![](images/0/lab-contents.png)
+    ![](images/0/lab-contents.png)

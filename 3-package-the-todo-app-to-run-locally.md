@@ -56,13 +56,13 @@ To allow you to focus primarily on the SODA APIs, you will be cloning a starter 
 
     If you're working on *Windows*, but sure to run the clone command in a folder somewhere under your user directory (e.g. C:\Users\yourusername).
 
-2. Once the application has finished downloading, change directories into the **soda-app** directory to see the files included with the app. Note the absolute path to the application directory, e.g. `/Users/username/Documents/soda-app`. You'll need this path in Part 4 when mapping a Docker volume.
+2. Once the application has finished cloning, change directories into the **soda-app** directory (created automatically with the previous `docker clone` command) to see the files included with the app. Note the absolute path to the application directory, e.g. `/Users/username/Documents/soda-app`. You'll need this path in Part 4 when mapping a Docker volume.
 
 ### **Part 3**: Build Docker image
 
 In this part, you will build a docker image to host the application downloaded in the previous part.
 
-1.  If not already done, open a terminal in the **soda-app** directory (created automatically with the previous docker clone command) where the Dockerfile is located, then run the following command:
+1.  If not already done, open a terminal in the **soda-app** directory where the Dockerfile is located, then run the following command:
 
     ```
     docker build -t soda-app-image .
