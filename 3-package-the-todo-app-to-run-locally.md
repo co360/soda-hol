@@ -72,37 +72,37 @@ In this part, you will build a docker image to host the application downloaded i
 
    When complete, the final output of the Docker build should look something like the following:
 
-   ```
-   > oracledb@4.0.1 install /usr/lib/node_modules/oracledb
-   > node package/install.js
-   
-   oracledb  ********************************************************************************
-   oracledb ** Node-oracledb 4.0.1 installed for Node.js 10.16.3 (linux, x64)
-   oracledb **
-   oracledb ** To use node-oracledb:
-   oracledb ** - Oracle Client libraries (64-bit) must be configured with ldconfig or  LD_LIBRARY_PATH
-   oracledb ** - To get libraries, install an Instant Client Basic or Basic Light  package from
-   oracledb **   https://www.oracle.com/technetwork/topics linuxx86-64soft-092277.html
-   oracledb **
-   oracledb ** Installation instructions: https://oracle.github.io/node-oracledb  INSTALL.html
-   oracledb  ********************************************************************************
-   
-   + oracledb@4.0.1
-   added 1 package in 0.529s
-   + todomvc@0.1.1
-   added 51 packages from 37 contributors in 5.782s
-   v10.16.3
-   6.9.0
-   Installed
-   Removing intermediate container c6f7d66c1356
-   ---> 020db4f0f027
-   Step 6/6 : CMD ["pm2-runtime", "/app/process.json"]
-   ---> Running in d429b95bf10a
-   Removing intermediate container d429b95bf10a
-   ---> e99d594b59b9
-   Successfully built e99d594b59b9
-   Successfully tagged soda-app-image:latest
-   ```
+        ```
+        > oracledb@4.0.1 install /usr/lib/node_modules/oracledb
+        > node package/install.js
+        
+        oracledb       ********************************************************************************
+        oracledb ** Node-oracledb 4.0.1 installed for Node.js 10.16.3 (linux, x64)
+        oracledb **
+        oracledb ** To use node-oracledb:
+        oracledb ** - Oracle Client libraries (64-bit) must be configured with ldconfig or       LD_LIBRARY_PATH
+        oracledb ** - To get libraries, install an Instant Client Basic or Basic Light       package from
+        oracledb **   https://www.oracle.com/technetwork/topics linuxx86-64soft-092277.html
+        oracledb **
+        oracledb ** Installation instructions: https://oracle.github.io/node-oracledb       INSTALL.html
+        oracledb       ********************************************************************************
+        
+        + oracledb@4.0.1
+        added 1 package in 0.529s
+        + todomvc@0.1.1
+        added 51 packages from 37 contributors in 5.782s
+        v10.16.3
+        6.9.0
+        Installed
+        Removing intermediate container c6f7d66c1356
+        ---> 020db4f0f027
+        Step 6/6 : CMD ["pm2-runtime", "/app/process.json"]
+        ---> Running in d429b95bf10a
+        Removing intermediate container d429b95bf10a
+        ---> e99d594b59b9
+        Successfully built e99d594b59b9
+        Successfully tagged soda-app-image:latest
+        ```
 
 ### **Part 4**: Run Docker image and test sample app
 
