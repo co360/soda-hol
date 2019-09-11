@@ -72,7 +72,7 @@ In this part, you will build a docker image to host the application downloaded i
 
    When complete, the final output of the Docker build should look something like the following:
 
-    ```
+    ```bash
     > oracledb@4.0.1 install /usr/lib/node_modules/oracledb
     > node package/install.js
     
