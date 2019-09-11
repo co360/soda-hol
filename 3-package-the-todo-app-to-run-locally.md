@@ -38,9 +38,11 @@ With Oracle Autonomous Database, data is encrypted both at rest and over the net
 
    After clicking **Download**, the client credentials will be downloaded to your machine as a zip file. These files should be treated securely to prevent unauthorized database access.
 
-5. Extract the contents of the zip file to a directory named **Wallet_TODODB**. Note the absolute path to the client credentials directory on your machine, e.g. `/Users/username/Downloads/Wallet_TODODB`. You'll need this first path in Part 4 when mapping a Docker volume.
+5. Extract the contents of the zip file to a directory named **Wallet_TODODB**. Note the absolute path to the client credentials directory on your machine, e.g. `/Users/username/Downloads/Wallet_TODODB`. You'll need this path in Part 4 when mapping a Docker volume.
 
-6. Open the **sqlnet.ora** file in the client credentials directory. Change the **DIRECTORY** value from `"?/network/admin"` to `"/db_credentials"` (include the double-quotes), then save your changes. In Part 4, the `/db_credentials` path will be mapped to the actual location of the client credentials as a Docker volume.
+6. Open the **sqlnet.ora** file in the Wallet_TODODB directory (the directory you extracted to in the previous step). Change the **DIRECTORY** value from `"?/network/admin"` to `"/db_credentials"` (include the double-quotes), then save your changes. In Part 4, the `/db_credentials` path will be mapped to the actual location of the client credentials as a Docker volume.
+
+   If you're working on *Windows*, but sure to extract the contents to a folder somewhere under your user directory (e.g. C:\Users\yourusername).
 
 ### **Part 2**: Clone Git repo with the "starter" app
 
@@ -52,13 +54,15 @@ To allow you to focus primarily on the SODA APIs, you will be cloning a starter 
    git clone https://github.com/dmcghan/soda-app.git
    ```
 
-2. Once the application has finished downloading, change directories into the **soda-app** directory to see the files included with the app. Note the absolute path to the application directory, e.g. `/Users/username/Documents/soda-app`. You'll need this second path in Part 4 when mapping a Docker volume.
+   If you're working on *Windows*, but sure to run the clone command in a folder somewhere under your user directory (e.g. C:\Users\yourusername).
+
+2. Once the application has finished downloading, change directories into the **soda-app** directory to see the files included with the app. Note the absolute path to the application directory, e.g. `/Users/username/Documents/soda-app`. You'll need this path in Part 4 when mapping a Docker volume.
 
 ### **Part 3**: Build Docker image
 
 In this part, you will build a docker image to host the application downloaded in the previous part.
 
-1. If not already done, open a terminal in the **soda-app** directory where the Dockerfile is located, then run the following command:
+1. If not already done, open a terminal in the **soda-app** directory (created automatically with the previous docker clone command) where the Dockerfile is located, then run the following command:
 
    ```
    docker build -t soda-app-image .
@@ -72,16 +76,16 @@ In this part, you will build a docker image to host the application downloaded i
    > oracledb@4.0.1 install /usr/lib/node_modules/oracledb
    > node package/install.js
    
-   oracledb ********************************************************************************
+   oracledb  ********************************************************************************
    oracledb ** Node-oracledb 4.0.1 installed for Node.js 10.16.3 (linux, x64)
    oracledb **
    oracledb ** To use node-oracledb:
-   oracledb ** - Oracle Client libraries (64-bit) must be configured with ldconfig or LD_LIBRARY_PATH
-   oracledb ** - To get libraries, install an Instant Client Basic or Basic Light package from
+   oracledb ** - Oracle Client libraries (64-bit) must be configured with ldconfig or  LD_LIBRARY_PATH
+   oracledb ** - To get libraries, install an Instant Client Basic or Basic Light  package from
    oracledb **   https://www.oracle.com/technetwork/topics linuxx86-64soft-092277.html
    oracledb **
-   oracledb ** Installation instructions: https://oracle.github.io/node-oracledb INSTALL.html
-   oracledb ********************************************************************************
+   oracledb ** Installation instructions: https://oracle.github.io/node-oracledb  INSTALL.html
+   oracledb  ********************************************************************************
    
    + oracledb@4.0.1
    added 1 package in 0.529s
@@ -105,7 +109,7 @@ In this part, you will build a docker image to host the application downloaded i
 With the Docker image built, you're now ready to run a container based on the image. In this part, you'll start a docker container which maps some ports and directories on your host machine to the docker container. 
 
 4. Copy the modified command from your text editor and run it in a terminal. This will create and run a Docker container named **soda-app-container** based on the **soda-app-image** image created previously. The last lines in the output from the command should look like the following:
-1. Open the **database.js** file in the **config** directory. Replace the `[SERVICE_NAME]` token for the `connectString` property with `TODODB_tp`. That's the appropriate connect string for transaction processing workloads. Additional connect strings can be found in the **tnsnames.ora** file in the client credentials directory. [Click here to learn more about the different connect strings]().
+1. Open the **database.js** file in the **config** directory. Replace the `[SERVICE_NAME]` token for the `connectString` property with `TODODB_tp`. That's the appropriate connect string for transaction processing workloads. Additional connect strings can be found in the **tnsnames.ora** file in the client credentials directory. [Click here to learn more about the different connect strings](https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/connect-predefined.html#GUID-9747539B-FD46-44F1-8FF8-F5AC650F15BE).
 
 2. Copy and paste the following terminal command into your favorite text editor: 
 
@@ -128,6 +132,24 @@ With the Docker image built, you're now ready to run a container based on the im
      -p 3000:3000 \
      soda-app-image:latest
    ```
+  
+   If you're running on *Windows*, note the following:
+
+   * The Linux line continuation character (/) will need to be replaced with the caret (^). Alternatively, you may compress the command to a single line. 
+   * The exact path for the volume mappings may vary depending on the version of Docker you are using. Forward slashes should be used in place of backslashes and the path should start with either **/c/Users/yourusername** or **//c/Users/yourusername**.
+   
+   Here's an example of what the command should look like on a Windows after replacing the tokens:
+
+   ```shell
+   docker run -it ^
+     --name soda-app-container ^
+     -v /c/Users/username/Documents/soda-app:/app ^
+     -v /c/Users/username/Downloads/Wallet_TODODB:/db_credentials ^
+     -p 3000:3000 ^
+     soda-app-image:latest
+   ```
+
+   If for any reason the `docker run` command fails to finish, you may need to run `docker rm soda-app-container` before running it again.
 
 4. Copy the modified command from your text editor and run it in a terminal. This will create and run a Docker container named **soda-app-container** based on the **soda-app-image** image created previously. The last lines in the output from the command should look like the following:
 
@@ -141,6 +163,8 @@ With the Docker image built, you're now ready to run a container based on the im
 5. Test the image by opening a browser and navigating to **localhost:3000**. If you see the following app, then you're ready to proceed to the next module.
 
    ![todo app](images/3/todo-app.png)
+
+   If you're running on *Windows* with Docker Toolbox, you will need to add a port mapping to the VirtualBox image created by Docker. In VirtualBox, open the **Settings** dialog for the VM, click **Advanced**, and then select **Port forwarding**. Leave both IP addresses blank and add **3000** for the host and guest ports. Save your changes and test again.
 
 ## Summary
 

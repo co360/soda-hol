@@ -39,6 +39,8 @@ With node-oracledb (the Oracle Database driver for Node.js), SODA APIs are expos
 
    ![change url](images/4/change-url.png)
 
+   After the page reloads, you may wish to bookmark the URL to make it easier to access if needed.
+
 5. Set Username to **todo_soda** and Password to **`SecretPassw0rd`**, then click **Sign in**.
 
    ![log in as todo soda](images/4/log-in-as-todo-soda.png)

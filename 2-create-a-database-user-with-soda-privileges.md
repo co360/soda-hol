@@ -63,6 +63,8 @@ Now that you are connected to the database as the ADMIN user, you will use that 
 
    ![run script](images/2/script-output.png)
 
+   If you see an "ORA-01917: user or role 'TODO_SODA' does not exist." error, then you likely pressed the "Run Statement" button to the left of the "Run Script" button. That button only executes the last statement. Click "Run Script" to run all of the statements in the script.
+
 3. Finally, execute the following script as before. This will allow the **TODO_SODA** user to connect to SQL Developer Web as well (you will do this in Module 5):
 
    ```sql
