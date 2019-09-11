@@ -20,41 +20,41 @@ In this module, you will clone a GitHub repo that will serve as the starting poi
 
 With Oracle Autonomous Database, data is encrypted both at rest and over the network. For network encryption to work, clients need to have the correct encryption keys and related connection details. In this part, you'll learn how to access and configure these credentials so that various clients can connect to the database.
 
-1. Within your cloud account, navigate to the Autonomous Transaction Processing service page and click the name of the ATP instance you would like to connect to. This will take you to the Database Details page for that instance.
+1.  Within your cloud account, navigate to the Autonomous Transaction Processing service page and click the name of the ATP instance you would like to connect to. This will take you to the Database Details page for that instance.
 
-   ![select atp instance](images/3/select-atp-instance.png)
+    ![select atp instance](images/3/select-atp-instance.png)
 
-2. Click the **DB Connection** button to open a dialog with connection related information.
+2.  Click the **DB Connection** button to open a dialog with connection related information.
 
-   ![db connection](images/3/click-db-connection.png)
+    ![db connection](images/3/click-db-connection.png)
 
-3. Click the **Download** button to download your client credentials.
+3.  Click the **Download** button to download your client credentials.
 
-   ![download](images/3/download.png)
+    ![download](images/3/download.png)
 
-4. Enter **`SecretPassw0rd`** for the **PASSWORD** and **CONFIRM PASSWORD** fields, then click **Download**. *The password entered will not be used in this lab because you will be using an auto-login capable client.* 
+4.  Enter **`SecretPassw0rd`** for the **PASSWORD** and **CONFIRM PASSWORD** fields, then click **Download**. *The password entered will not be used in this lab because you will be using an auto-login capable client.* 
 
-   ![password](images/3/password.png)
+    ![password](images/3/password.png)
 
-   After clicking **Download**, the client credentials will be downloaded to your machine as a zip file. These files should be treated securely to prevent unauthorized database access.
+    After clicking **Download**, the client credentials will be downloaded to your machine as a zip file. These files should be treated securely to prevent unauthorized database access.
 
-5. Extract the contents of the zip file to a directory named **Wallet_TODODB**. Note the absolute path to the client credentials directory on your machine, e.g. `/Users/username/Downloads/Wallet_TODODB`. You'll need this path in Part 4 when mapping a Docker volume.
+5.  Extract the contents of the zip file to a directory named **Wallet_TODODB**. Note the absolute path to the client credentials directory on your machine, e.g. `/Users/username/Downloads/Wallet_TODODB`. You'll need this path in Part 4 when mapping a Docker volume.
 
-6. Open the **sqlnet.ora** file in the Wallet_TODODB directory (the directory you extracted to in the previous step). Change the **DIRECTORY** value from `"?/network/admin"` to `"/db_credentials"` (include the double-quotes), then save your changes. In Part 4, the `/db_credentials` path will be mapped to the actual location of the client credentials as a Docker volume.
+6.  Open the **sqlnet.ora** file in the Wallet_TODODB directory (the directory you extracted to in the previous step). Change the **DIRECTORY** value from `"?/network/admin"` to `"/db_credentials"` (include the double-quotes), then save your changes. In Part 4, the `/db_credentials` path will be mapped to the actual location of the client credentials as a Docker volume.
 
-   If you're working on *Windows*, but sure to extract the contents to a folder somewhere under your user directory (e.g. C:\Users\yourusername).
+    If you're working on *Windows*, but sure to extract the contents to a folder somewhere under your user directory (e.g. C:\Users\yourusername).
 
 ### **Part 2**: Clone Git repo with the "starter" app
 
 To allow you to focus primarily on the SODA APIs, you will be cloning a starter application. The application is wired up to provide a REST API to a front-end app, but it is not 100% complete. You will finish building out the app in the next module.
 
-1. Open a command line terminal on your machine and navigate to a directory where you'd like to download the starter app, then run the following command:
+1.  Open a command line terminal on your machine and navigate to a directory where you'd like to download the starter app, then run the following command:
 
-   ```
-   git clone https://github.com/dmcghan/soda-app.git
-   ```
+    ```
+    git clone https://github.com/dmcghan/soda-app.git
+    ```
 
-   If you're working on *Windows*, but sure to run the clone command in a folder somewhere under your user directory (e.g. C:\Users\yourusername).
+    If you're working on *Windows*, but sure to run the clone command in a folder somewhere under your user directory (e.g. C:\Users\yourusername).
 
 2. Once the application has finished downloading, change directories into the **soda-app** directory to see the files included with the app. Note the absolute path to the application directory, e.g. `/Users/username/Documents/soda-app`. You'll need this path in Part 4 when mapping a Docker volume.
 
@@ -108,63 +108,62 @@ In this part, you will build a docker image to host the application downloaded i
 
 With the Docker image built, you're now ready to run a container based on the image. In this part, you'll start a docker container which maps some ports and directories on your host machine to the docker container. 
 
-4. Copy the modified command from your text editor and run it in a terminal. This will create and run a Docker container named **soda-app-container** based on the **soda-app-image** image created previously. The last lines in the output from the command should look like the following:
-1. Open the **database.js** file in the **config** directory. Replace the `[SERVICE_NAME]` token for the `connectString` property with `TODODB_tp`. That's the appropriate connect string for transaction processing workloads. Additional connect strings can be found in the **tnsnames.ora** file in the client credentials directory. [Click here to learn more about the different connect strings](https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/connect-predefined.html#GUID-9747539B-FD46-44F1-8FF8-F5AC650F15BE).
+1.  Open the **database.js** file in the **config** directory. Replace the `[SERVICE_NAME]` token for the `connectString` property with `TODODB_tp`. That's the appropriate connect string for transaction processing workloads. Additional connect strings can be found in the **tnsnames.ora** file in the client credentials directory. [Click here to learn more about the different connect strings](https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/connect-predefined.html#GUID-9747539B-FD46-44F1-8FF8-F5AC650F15BE).
 
-2. Copy and paste the following terminal command into your favorite text editor: 
+2.  Copy and paste the following terminal command into your favorite text editor: 
 
-   ```shell
-   docker run -it \
-     --name soda-app-container \
-     -v [APP_DIR]:/app \
-     -v [WALLET_DIR]:/db_credentials \
-     -p 3000:3000 \
-     soda-app-image:latest
-   ```
+    ```shell
+    docker run -it \
+      --name soda-app-container \
+      -v [APP_DIR]:/app \
+      -v [WALLET_DIR]:/db_credentials \
+      -p 3000:3000 \
+      soda-app-image:latest
+    ```
 
 3. In the text editor, replace the `[APP_DIR]` and `[WALLET_DIR]` tokens with the correct values. The `[APP_DIR]` value should be the absolute path to where the starter app was cloned. The `[WALLET_DIR]` value should be the absolute path to where the client credentials were extracted. Here's an example of what the command should look like on a Mac after replacing the tokens:
 
-   ```shell
-   docker run -it \
-     --name soda-app-container \
-     -v /Users/username/Documents/soda-app:/app \
-     -v /Users/username/Downloads/Wallet_TODODB:/db_credentials \
-     -p 3000:3000 \
-     soda-app-image:latest
-   ```
+    ```shell
+    docker run -it \
+      --name soda-app-container \
+      -v /Users/username/Documents/soda-app:/app \
+      -v /Users/username/Downloads/Wallet_TODODB:/db_credentials \
+      -p 3000:3000 \
+      soda-app-image:latest
+    ```
   
-   If you're running on *Windows*, note the following:
+    If you're running on *Windows*, note the following:
 
-   * The Linux line continuation character (/) will need to be replaced with the caret (^). Alternatively, you may compress the command to a single line. 
-   * The exact path for the volume mappings may vary depending on the version of Docker you are using. Forward slashes should be used in place of backslashes and the path should start with either **/c/Users/yourusername** or **//c/Users/yourusername**.
+    * The Linux line continuation character (/) will need to be replaced with the  caret (^). Alternatively, you may compress the command to a single line. 
+    * The exact path for the volume mappings may vary depending on the version of Docker you are using. Forward slashes should be used in place of backslashes and the path should start with either **/c/Users/yourusername** or **//c/Users/yourusername**.
    
-   Here's an example of what the command should look like on a Windows after replacing the tokens:
+    Here's an example of what the command should look like on a Windows after replacing the tokens:
 
-   ```shell
-   docker run -it ^
-     --name soda-app-container ^
-     -v /c/Users/username/Documents/soda-app:/app ^
-     -v /c/Users/username/Downloads/Wallet_TODODB:/db_credentials ^
-     -p 3000:3000 ^
-     soda-app-image:latest
-   ```
+    ```shell
+    docker run -it ^
+      --name soda-app-container ^
+      -v /c/Users/username/Documents/soda-app:/app ^
+      -v /c/Users/username/Downloads/Wallet_TODODB:/db_credentials ^
+      -p 3000:3000 ^
+      soda-app-image:latest
+    ```
 
-   If for any reason the `docker run` command fails to finish, you may need to run `docker rm soda-app-container` before running it again.
+    If for any reason the `docker run` command fails to finish, you may need to run `docker rm soda-app-container` before running it again.
 
-4. Copy the modified command from your text editor and run it in a terminal. This will create and run a Docker container named **soda-app-container** based on the **soda-app-image** image created previously. The last lines in the output from the command should look like the following:
+4.  Copy the modified command from your text editor and run it in a terminal. This will create and run a Docker container named **soda-app-container** based on the **soda-app-image** image created previously. The last lines in the output from the command should look like the following:
 
-   ```shell
-   Starting application
-   Initializing database module
-   Initializing web server module
-   Web server listening on localhost:3000
-   ```
+    ```shell
+    Starting application
+    Initializing database module
+    Initializing web server module
+    Web server listening on localhost:3000
+    ```
 
-5. Test the image by opening a browser and navigating to **localhost:3000**. If you see the following app, then you're ready to proceed to the next module.
+5.  Test the image by opening a browser and navigating to **localhost:3000**. If you see the following app, then you're ready to proceed to the next module.
 
-   ![todo app](images/3/todo-app.png)
+    ![todo app](images/3/todo-app.png)
 
-   If you're running on *Windows* with Docker Toolbox, you will need to add a port mapping to the VirtualBox image created by Docker. In VirtualBox, open the **Settings** dialog for the VM, click **Advanced**, and then select **Port forwarding**. Leave both IP addresses blank and add **3000** for the host and guest ports. Save your changes and test again.
+    If you're running on *Windows* with Docker Toolbox, you will need to add a port mapping to the VirtualBox image created by Docker. In VirtualBox, open the **Settings** dialog for the VM, click **Advanced**, and then select **Port forwarding**. Leave both IP addresses blank and add **3000** for the host and guest ports. Save your changes and test again.
 
 ## Summary
 
