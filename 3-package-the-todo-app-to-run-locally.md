@@ -62,15 +62,15 @@ To allow you to focus primarily on the SODA APIs, you will be cloning a starter 
 
 In this part, you will build a docker image to host the application downloaded in the previous part.
 
-1. If not already done, open a terminal in the **soda-app** directory (created automatically with the previous docker clone command) where the Dockerfile is located, then run the following command:
+1.  If not already done, open a terminal in the **soda-app** directory (created automatically with the previous docker clone command) where the Dockerfile is located, then run the following command:
 
-   ```
-   docker build -t soda-app-image .
-   ```
+    ```
+    docker build -t soda-app-image .
+    ```
 
-   That command will create an image with the tag **soda-app-image**. The docker image may take a few minutes to build as there are a fair number of dependencies that must be downloaded. While the image is building, take a moment to review the Dockerfile so that you have a better understanding of what's included.
+    That command will create an image with the tag **soda-app-image**. The docker image may take a few minutes to build as there are a fair number of dependencies that must be downloaded. While the image is building, take a moment to review the Dockerfile so that you have a better understanding of what's included.
 
-   When complete, the final output of the Docker build should look something like the following:
+    When complete, the final output of the Docker build should look something like the following:
 
     ```bash
     > oracledb@4.0.1 install /usr/lib/node_modules/oracledb
