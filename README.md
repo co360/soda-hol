@@ -19,7 +19,7 @@ You will work to complete a three-tier todo tracking application. The front-end 
 | 2 | [Create a DB user with SODA privileges](2-create-a-database-user-with-soda-privileges.md) | 5 min |
 | 3 | [Clone Git repo and build Docker image](3-package-the-todo-app-to-run-locally.md) | 20 min |
 | 4 | [Use SODA APIs for CRUD operations](4-use-soda-apis-for-crud-operations.md) | 30 min |
-| 5 | [Use SQL features for JSON](5-use-sql-features-for-json.md) | ? min |
+| 5 | [Use SQL features for JSON](5-use-sql-features-for-json.md) | 15 min |
 
 ## Parts
 
