@@ -5,7 +5,7 @@ In this module, you will extend the Node.js starter application by adding the ap
 Note that the Docker container created in the previous module uses a program to monitor changes you make to the application code on your host operating system. When you update the code and save your changes the app should restart automatically. If the code has an error that prevents the app from starting correctly, then the container may eventually stop running. If this happens, you can restart the container with the following command:
 
 ```
-docker start -i soda-app-container
+docker start soda-app-container -i 
 ```
 
 ## Objectives
@@ -19,11 +19,11 @@ docker start -i soda-app-container
 
 The terminology used with document stores differs a little from what you might be used to in the relational world. For example, rather than tables that store rows, you work with collections that store documents. In this part, you will create a collection to store todo documents.
 
-With node-oracledb (the Oracle Database driver for Node.js), SODA APIs are exposed via a top level object returned from a synchronous method call on a connection object: `connection.getSodaDatabase()`. Once that object is obtained, a collection can be created via the asynchronous `soda.createCollection()` method.
+With node-oracledb (the Oracle Database driver for Node.js), SODA APIs are exposed via a top level object returned from a synchronous method call on a connection object: `connection.getSodaDatabase()`. Once that object is obtained, a collection can be created via the asynchronous `soda.createCollection()` method. [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#creatingsodacollections) for details on creating collections.
 
 1.  Open the **database.js** file in the **util** directory.
 
-2.  Locate the `initialize` function and replace the comment related to adding SODA code with code to create a collection named "todos". [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#creatingsodacollections) for details on creating collections. When you save your changes, the app will automatically restart and run the `initialize` function.
+2.  Locate the `initialize` function and replace the comment related to adding SODA code with code to create a collection named "todos". When you save your changes, the app will automatically restart and run the `initialize` function.
 
     Do your best to write the code on your own, but [use this initialize example](solutions/4/initialize.js) if needed.
 
@@ -58,7 +58,8 @@ With the todos collection in place, you can start to build out the CRUD function
 1.  Open the **todos.js** file in the **db_apis** directory.
 
 2.  Locate the `create` function and replace the comment related to adding SODA code with code that does the following:
-    * Add the `todo` object passed in to the todos collection. Use the method that returns the metadata related to the document.
+    * Get a reference to the todos collection.
+    * Add the `todo` object passed in to the todos collection. Use the `insertOneAndGet` method which returns the metadata related to the document.
     * Return the key value associated with the document that was added to the collection.
 
     Do your best to write the code on your own, but [use this create example](solutions/4/create.js) if needed.
@@ -74,19 +75,20 @@ With the todos collection in place, you can start to build out the CRUD function
 
     ![row in todos table](images/4/row-in-todos-table.png)
 
-    If you scroll to the right of the results, you'll see that the json_document column is defined as a BLOB type by default. To see the content with SQL Developer Web, click the "pencil" icon in the field and select the Saved Text tab.
+    If you scroll to the right of the results, you'll see that the json_document column is defined as a BLOB type by default. To see the content with SQL Developer Web, click inside the BLOB column for a given row. Then click the "pencil" icon in the field and select the Saved Text tab.
 
     ![edit blob modal](images/4/blob-content.png)
 
 ### **Part 3**: Fetch documents from the collection
 
-Now that todos are being stored in the collection, the next thing to add is the ability to fetch them back out so they can be displayed in the todo app. As you saw in the previous part, document keys in SODA are stored as separate metadata - not as part of the document content. This is something you'll need to consider when building apps as clients often need the keys to work with REST APIs. [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#-293-creating-and-accessing-soda-documents) for details on adding documents to collections.
+Now that todos are being stored in the collection, the next thing to add is the ability to fetch them back out so they can be displayed in the todo app. As you saw in the previous part, document keys in SODA are stored as separate metadata - not as part of the document content. This is something you'll need to consider when building apps as clients often need the keys to work with REST APIs. [Consult the documentation](https://oracle.github.io/node-oracledb/doc/api.html#-293-creating-and-accessing-soda-documents) for details on accessing documents in collections.
 
 1.  Return to the **todos.js** file in the **db_apis** directory.
 
 2.  Locate the `find` function and replace the comment related to adding SODA code with code that does the following:
-    * Fetch all of the todo documents from the todos collection.
-    * Iterate over the the documents returned and use them to populate the `todos` array which is already declared and returned at the end of the function. Each todo element in the array should have an `id` property with a value that maps to the key of the document.
+    * Get a reference to the todos collection.
+    * Fetch all of the todo documents from the todos collection using the `getDocuments` method of a SodaOperation instance.
+    * Iterate over the the documents returned and use them to populate the `todos` array which is already declared and returned at the end of the function. In each iteration, use the `getContent` method to fetch the JSON content. Add an `id` property to the content with a value that's the same as the key of the document.
 
     Do your best to write the code on your own, but [use this find example](solutions/4/find.js) if needed.
 
@@ -103,7 +105,8 @@ The app lets users change the name and status of todos and then issues an HTTP P
 1.  Return to the **todos.js** file in the **db_apis** directory.
 
 2.  Locate the `update` function and replace the comment related to adding SODA code with code that does the following:
-    * Use the appropriate SODA API to update the todo in the collection. Use the  method that returns the metadata related to the document.
+    * Get a reference to the todos collection.
+    * Use the appropriate SODA API to update the todo in the collection. Use the  `replaceOneAndGet` method which returns the metadata related to the document.
     * Use the metadata returned from the update to determine if the update was successful. If it was then return true, otherwise (perhaps the key value passed in didn't exist) return false.
 
     Do your best to write the code on your own, but [use this update example](solutions/4/update.js) if needed.

@@ -40,9 +40,9 @@ With Oracle Autonomous Database, data is encrypted both at rest and over the net
 
 5.  Extract the contents of the zip file to a directory named **Wallet_TODODB**. Note the absolute path to the client credentials directory on your machine, e.g. `/Users/username/Downloads/Wallet_TODODB`. You'll need this path in Part 4 when mapping a Docker volume.
 
-6.  Open the **sqlnet.ora** file in the Wallet_TODODB directory (the directory you extracted to in the previous step). Change the **DIRECTORY** value from `"?/network/admin"` to `"/db_credentials"` (include the double-quotes), then save your changes. In Part 4, the `/db_credentials` path will be mapped to the actual location of the client credentials as a Docker volume.
-
     If you're working on *Windows*, but sure to extract the contents to a folder somewhere under your user directory (e.g. C:\Users\yourusername).
+
+6.  Open the **sqlnet.ora** file in the Wallet_TODODB directory (the directory you extracted to in the previous step). Change the **DIRECTORY** value from `"?/network/admin"` to `"/db_credentials"` (include the double-quotes), then save your changes. In Part 4, the `/db_credentials` path will be mapped to the actual location of the client credentials as a Docker volume.
 
 ### **Part 2**: Clone Git repo with the "starter" app
 
@@ -148,7 +148,9 @@ With the Docker image built, you're now ready to run a container based on the im
       soda-app-image:latest
     ```
 
-    If for any reason the `docker run` command fails to finish, you may need to run `docker rm soda-app-container` before running it again.
+    If for any reason the `docker run` command fails to finish, you may need to run `docker rm soda-app-container` before trying to run it again.
+
+    If the `docker run` command completes but the container stops for any reason, you can restart the image by running `docker start soda-app-container -i`.
 
 4.  Copy the modified command from your text editor and run it in a terminal. This will create and run a Docker container named **soda-app-container** based on the **soda-app-image** image created previously. The last lines in the output from the command should look like the following:
 
