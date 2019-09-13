@@ -170,7 +170,7 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
 
         $(window).on('popstate', function(event) {
            console.log('popstate', event);
-          $scope.loadModule(history.state);
+          $scope.loadModule(history.state, false);
         });
 
         stepClickHandler = function (e) {
