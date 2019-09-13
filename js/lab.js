@@ -145,7 +145,7 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
 
             var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
 
-            history.replaceState(null, '', newRelativePathQuery);
+            history.pushState(null, '', newRelativePathQuery);
           }
 
           $scope.loadContent(module.filename);
