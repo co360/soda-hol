@@ -145,7 +145,7 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
 
             var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
 
-            history.pushState(null, '', newRelativePathQuery);
+            history.pushState(module, '', newRelativePathQuery);
           }
 
           $scope.loadContent(module.filename);
@@ -164,6 +164,11 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
             })
           }, 500);
         }
+
+        $(window).on('popstate', function(event) {
+          console.log('popstate', event);
+          $scope.loadModule(history.state);
+        });
 
         stepClickHandler = function (e) {
           var fadeOutStep = function (step) {
@@ -213,11 +218,3 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
     }
   ]
 );
-
-$(window).on('popstate', function(event) {
-  console.log('popstate', event);
-});
-
-$(document).ready(function(event) {
-  console.log('ready', event);
-});
