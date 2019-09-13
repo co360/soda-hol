@@ -214,10 +214,10 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
   ]
 );
 
-window.onpopstate = function(event) {
+$(window).on('popstate', function(event) {
   console.log('popstate', event);
-};
+});
 
-window.onload = function(event) {
-  console.log('load', event);
-};
+$(document).on('load', function(event) {
+  console.log('popstate', event);
+});
