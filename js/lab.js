@@ -47,7 +47,7 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
         //$scope.theme = 'default';
         $scope.selection = "";
 
-//        READ MANIFEST - THEME, INTERACTIVE, MENU
+        // READ MANIFEST - THEME, INTERACTIVE, MENU
         $http.get('manifest.json')
           .then(
             function (res) {
@@ -210,4 +210,14 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
         $scope.close = function () {
             $mdSidenav('left').close();
         };
-    }]);
+    }
+  ]
+);
+
+window.onpopstate(function(event) {
+  console.log('popstate', event);
+});
+
+window.onload(function(event) {
+  console.log('load', event);
+});
