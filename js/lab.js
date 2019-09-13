@@ -218,6 +218,6 @@ $(window).on('popstate', function(event) {
   console.log('popstate', event);
 });
 
-$(document).on('load', function(event) {
+$(document).on('ready', function(event) {
   console.log('popstate', event);
 });
