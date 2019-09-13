@@ -135,7 +135,8 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
             );
         }
 
-        $scope.loadModule = function (module) {
+        $scope.loadModule = function (module, push) {
+          push = (push === false) ? false : true;
           $scope.currentFilename = module.filename;
 
           if ('URLSearchParams' in window) {
@@ -145,7 +146,9 @@ hol.controller('holController', ['$scope', '$http', '$mdSidenav', '$sanitize', '
 
             var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
 
-            history.pushState(module, '', newRelativePathQuery);
+            if (push) {
+              history.pushState(module, '', newRelativePathQuery);
+            }
           }
 
           $scope.loadContent(module.filename);
