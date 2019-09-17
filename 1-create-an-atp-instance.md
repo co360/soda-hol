@@ -49,6 +49,7 @@ In this part, you will create an instance of the ATP database service for the to
     | --- | --- |
     | Display name | **TODODB** |
     | Database name | **TODODB** |
+    | Always Free | Select this option |
     | Password | **`SecretPassw0rd`** |
     | Confirm password | **`SecretPassw0rd`** |
 
